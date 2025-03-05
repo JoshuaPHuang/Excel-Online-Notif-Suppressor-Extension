@@ -1,0 +1,79 @@
+Popup Planning:
+
+Sections:
+
+Introduction?
+- Explain that only elements found within the iframe can be removed; or? only the one that matches https://usc-excel.officeapps.live.com?
+- Explain that this suppresses or removes dialogs
+Dialog List of Checkboxes of things to kill
+- RenamePromptCalloutHeader ('We have autosaved your file. Ready to name it?')
+- @aria-label, 'Selected date' (Calendar pop-up which occurs after using Datestamp hotkey Ctrl+;.)
+- KeyboardShortcutAwarenessCalloutCloseButton ('Your browser reserves some shortcuts. Find the list of alternatives here.')
+- Editing session in progress (auto continues)
+- Someone has this workbook locked (auto disapprove)
+- NEED TO ADD:
+    - Your session has expired, please reload to continue
+    - Allow access to Microsoft 365 account (auto allow or auto close)
+    - Trust workbook links? (auto trust or auto close) (notify?)
+    - "UNABLE TO REFRESH We couldn't get updated values from a linked workbook. Give Feedback" (auto close) (notify?)
+    - Stay signed in (need to add back in)
+    - "Need more working space? Looks like your display is not optimised. Toggle FullScreen to maximise screen space." (auto close)
+
+
+
+Additional Strings Section
+- Have a plus sign to add additional strings to kill
+- Each additional string should have a textbox, # layers to kill, 
+- Need a blurb (question mark in a circle, popup?) to explain what this is and what the # of layers to kill means
+- Need to store these values in Chrome local storage 
+
+
+Settings Section
+- Enable notifications checkbox
+- View logs button
+- View Github Repository
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+To Do:
+
+Register a Chrome developer account
+
+
+Update version history and other stuff on the manifest
+
+Collect URLs of other people who use Excel online
+
+Suppress "looks like your screen isn't optimized" or something
+
+Add custom options to kill specific Strings and how many levels up from that String to kill
+
+Add method to automatically reload when the session expired popup comes up
+
+Separate the popup into different sections of things so it isn't overwhelming when it is first opened
+
+Create a better custom-made icon for the extension
+
+
+Create a default settings.json for startup
+
+
+Cancel sign on Excel symbol instead of a pacifier (red)
+Thicken lines in Excel right symbol
+Fill in the back with light gray?
+
+
+
+
+Create new Github Repository and add to LinkedIn and resume

@@ -1,27 +1,30 @@
 {
-    "manifest_version": 3,
-    "name": "Excel Online Suppressor",
-    "version": "1.0",
-    "description": "Suppresses Excel Online pop-ups which interfere with shortcuts, including 1. 'Your browser reserves some shortcuts. Find the list of alternatives here.', 2. 'We have autosaved your file. Ready to name it?', 3. Calendar pop-up which occurs after using Datestamp hotkey Ctrl+;.",
-    "permissions": [
-      "notifications",
-      "activeTab"
-    ],
-    "icons": {
-      "128": "custom_excel_suppressor_128.png"
-    },
-    "background": {
-      "service_worker": "background.js"
-    },
-    "content_scripts": [
-      {
-        "matches": ["https://*.sharepoint.com/*", "https://*.officeapps.live.com/*"],
-        "all_frames": true,
-        "js": ["contentScript.js"]
-      }
-    ],
-    "action": {
-      "default_popup": "popup.html",
-      "default_icon": "custom_excel_suppressor.png"
+  "manifest_version": 3,
+  "name": "Excel Online Suppressor",
+  "version": "1.0.1",
+  "description": "Suppresses Excel Online pop-ups which interfere with shortcuts, including 1. 'Your browser reserves some shortcuts. Find the list of alternatives here.', 2. 'We have autosaved your file. Ready to name it?', 3. Calendar pop-up which occurs after using Datestamp hotkey Ctrl+;.",
+  "version_name": "1.0.1 (Initial Release 20250304)",
+  "author": "Joshua Huang",
+  "permissions": [
+    "notifications",
+    "activeTab",
+    "storage"
+  ],
+  "icons": {
+    "128": "custom_excel_suppressor_128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.sharepoint.com/*", "https://*.officeapps.live.com/*", "https://*.office.com/*", "https://*.microsoftonline.com/*", "https://*.microsoft.com/*"],
+      "all_frames": true,
+      "js": ["contentScript.js"]
     }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "custom_excel_suppressor.png"
   }
+}

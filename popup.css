@@ -1,0 +1,133 @@
+/* popup.css */
+
+body {
+    font-family: 'Nunito Sans', 'Arial', sans-serif;
+    padding: 2.5rem; /* Adjust how much padding is at the borders of the whole popup */
+    width: 280px;
+    text-align: left;
+    background: #e6e7ee;
+    color: #44476a;
+    font-size: 0.85rem;
+}
+
+body:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #8a8a8a;
+}
+
+h2 {
+    font-family: 'Nunito Sans', 'Arial', sans-serif;
+    font-weight: 900;
+    font-size: 1.2rem;
+    color: #44476a;
+}
+
+h3 {
+    font-family: 'Nunito Sans', 'Arial', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    color: #44476a;
+}
+
+select, input {
+    width: 100%;
+    margin-bottom: 1.3rem;
+    padding-left: 0.1rem;
+}
+
+input {
+    padding-left: 0.3rem;
+}
+
+select, input, button {
+    font-family: 'Nunito Sans', 'Arial', sans-serif;
+    font-size: 0.9rem;
+}
+
+select, input, button, textarea {
+    border: 1px solid #44476a;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    color: #333550;
+}
+
+select:focus, input:focus, button:focus, textarea:focus {
+    outline: 1px solid #44476a;
+    color: #000000;
+}
+
+textarea {
+    font-family: monospace;
+    font-size: 0.8rem;
+    resize: vertical;
+    max-height: 300px;
+    overflow-y: auto;
+    width: 100%;
+    margin-bottom: 1.3rem;
+    padding: 0.4rem;
+    padding-top: 0.3rem;
+}
+
+input[type="checkbox"], select {
+    cursor: pointer; /* show pointer on hover */
+}
+
+input[type="checkbox"] {
+    width: min-content;
+}
+
+button {
+    background: #EFF0F5;
+    font-size: 0.85rem;
+    cursor: pointer; /* show pointer on hover */
+}
+
+select:disabled, textarea:disabled, button:disabled, input:disabled {
+    opacity: 0.5;
+    background: #e6e7ee;
+}
+
+select:hover, textarea:hover, input:hover {
+    filter: brightness(1.08);
+}
+
+button:hover {
+    filter: brightness(1.02);
+}
+
+select:disabled:hover, textarea:disabled:hover, button:disabled:hover, input:disabled:hover {
+    filter: brightness(1);
+    transform: scale(1);
+    cursor: not-allowed;
+}
+
+button:active {
+    transform: scale(0.98);
+    filter: brightness(0.8);
+}
+
+#submit-btn {
+    font-size: 1.2rem;
+    padding: 0.7rem 1.4rem; /* Add more padding for larger button */
+    border-radius: 0.5rem;
+    background-color: #0056B3;
+    color: white; /* text color */
+    border: none;
+}
+
+#submit-btn:hover {
+    filter: brightness(1.12);
+}
+
+#submit-btn:disabled:hover {
+    filter: brightness(1);
+}
+
+#submit-btn:active {
+    filter: brightness(0.75);
+}
+
+#error-section {
+    display: none;
+}
