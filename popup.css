@@ -3,10 +3,12 @@
 body {
     font-family: 'Nunito Sans', 'Arial', sans-serif;
     padding: 2.5rem; /* Adjust how much padding is at the borders of the whole popup */
-    width: 280px;
+    width: 300px;
     text-align: left;
-    background: #e6e7ee;
+    /*
+    background: #ffffff;
     color: #44476a;
+    */
     font-size: 0.85rem;
 }
 
@@ -15,6 +17,70 @@ body:disabled {
     cursor: not-allowed;
     background-color: #8a8a8a;
 }
+
+h2 {
+    font-size: 1.6rem;
+}
+
+
+
+
+.info-container {
+    display: inline-block;
+    /* position: relative; */
+    cursor: pointer;
+    /*
+    font-size: 1rem;
+    color: #0056B3;
+    font-weight: bold;
+    border: 1px solid #0056B3;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 18px;
+    */
+}
+
+
+.tooltip {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    padding: 0.5rem;
+    border: 1px solid;
+    border-radius: 0.3rem;
+    min-width: 10rem;
+    max-width: 12rem;
+    white-space: normal;
+    /* word-break: break-all; */
+    z-index: 100;
+    left: 0;
+    /* margin-top: 0.3rem; */
+    /*
+    left: -50%;
+    transform: translateX(-50%);
+    top: 100%;
+    */
+}
+
+.info-container:hover .tooltip {
+    display: block;
+    cursor: default;
+}
+
+.section {
+    position: relative;
+}
+
+
+
+
+
+
+
+
+/*
 
 h2 {
     font-family: 'Nunito Sans', 'Arial', sans-serif;
@@ -70,7 +136,7 @@ textarea {
 }
 
 input[type="checkbox"], select {
-    cursor: pointer; /* show pointer on hover */
+    cursor: pointer;
 }
 
 input[type="checkbox"] {
@@ -80,7 +146,7 @@ input[type="checkbox"] {
 button {
     background: #EFF0F5;
     font-size: 0.85rem;
-    cursor: pointer; /* show pointer on hover */
+    cursor: pointer;
 }
 
 select:disabled, textarea:disabled, button:disabled, input:disabled {
@@ -109,10 +175,10 @@ button:active {
 
 #submit-btn {
     font-size: 1.2rem;
-    padding: 0.7rem 1.4rem; /* Add more padding for larger button */
+    padding: 0.7rem 1.4rem;
     border-radius: 0.5rem;
     background-color: #0056B3;
-    color: white; /* text color */
+    color: white; 
     border: none;
 }
 
@@ -131,3 +197,5 @@ button:active {
 #error-section {
     display: none;
 }
+
+*/

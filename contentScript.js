@@ -122,6 +122,7 @@ function custom_notif(notif_txt)
 };
 
 // Run the functions to start the observer
+const iframePattern = new RegExp('https://.*\\.officeapps\\.live\\.com');
 if (document.location.origin.match('https://usc-excel.officeapps.live.com'))
 {
     start_excel_observer();
