@@ -10,14 +10,21 @@ Dialog List of Checkboxes of things to kill
 - @aria-label, 'Selected date' (Calendar pop-up which occurs after using Datestamp hotkey Ctrl+;.)
 - KeyboardShortcutAwarenessCalloutCloseButton ('Your browser reserves some shortcuts. Find the list of alternatives here.')
 - Editing session in progress (auto continues)
-- Someone has this workbook locked (auto disapprove)
+- Your session has expired, please reload to continue
 - NEED TO ADD:
-    - Your session has expired, please reload to continue
     - Allow access to Microsoft 365 account (auto allow or auto close)
     - Trust workbook links? (auto trust or auto close) (notify?)
     - "UNABLE TO REFRESH We couldn't get updated values from a linked workbook. Give Feedback" (auto close) (notify?)
     - Stay signed in (need to add back in)
     - "Need more working space? Looks like your display is not optimised. Toggle FullScreen to maximise screen space." (auto close)
+        'Need more working space?'<br>'Looks like your display is not optimised.'<br>'Toggle FullScreen to maximise screen space.'
+    - NEED TO ALSO ADD disable for the Ctrl options popup that occurs when pasting something
+    - Frozen rows won't scroll
+        'Frozen rows won't scroll'<br>'The visible area of your grid contains only frozen rows, which will not scroll. To scroll, unfreeze the rows, change the size of the Excel window, or zoom out.'
+    - Someone has this workbook locked (Continue in reading view)
+    - We couldn't lock this file for editing/Someone has this workbook locked (No)
+
+
 
 
 
@@ -77,3 +84,17 @@ Fill in the back with light gray?
 
 
 Create new Github Repository and add to LinkedIn and resume
+
+
+
+
+
+NEED TO MAKE SURE SO NO CONFLICT WITH THE SERVICES AGREEMENT:
+
+Make it clear in the extension description that users have control over what gets blocked, and make sure no important functionality is being suppressed.
+Make sure users understand that they are choosing to suppress non-essential notifications and not essential features.
+For transparency, consider including a Privacy Policy with the extension that explains how any data (if any) is handled.
+
+Clear Descriptions: On your extension’s page on the Chrome Web Store, clearly state that this extension allows users to suppress non-essential pop-ups and provide full transparency about which pop-ups can be suppressed.
+
+Remove all security-related auto-approvals...
