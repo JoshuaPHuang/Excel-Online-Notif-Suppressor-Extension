@@ -14,7 +14,7 @@
             <div class="tooltip" id="intro-tooltip">Only dialogs contained in iframes with origin containing "https://*.<wbr>officeapps.<wbr>live.<wbr>com/" are suppressed.<br>To expand functionality to the overall page or to additional origins, please contact the developer.</div>
         </div>
     </div>
-    <p>Select which pop-ups to block below!</p>
+    <p>Select which pop-ups to block below! EXTENDED BLURB DISCLAIMER SAYING THAT ALL MODIFICATIONS ARE USER-DECIDED</p>
     
 
     <div class="section" id="blocked-pop-ups">
@@ -51,7 +51,7 @@
                 <input type="checkbox" id="checkbox-1-4" style="margin-right: 0.5rem">Microsoft 365 Access Prompt
                 <div class="info-container">
                     <div class="hoverable">🛈</div>
-                    <div class="tooltip">'Allow access to Microsoft 365 account. Your browser settings are preventing an optimal experience with Microsoft 365. Allow access to improve your experience.'<br>This pop-up sometimes appears when accessing another organization's files.<br><br>Check to auto-close (ignore and close the dialogue).</div>
+                    <div class="tooltip">'Allow access to Microsoft 365 account. Your browser settings are preventing an optimal experience with Microsoft 365. Allow access to improve your experience.'<br>This pop-up sometimes appears when accessing another organization's files.<br><br>Check to auto-close (ignore and close the dialog).</div>
                 </div>
             </label>
         </div>
@@ -60,11 +60,59 @@
                 <input type="checkbox" id="checkbox-1-5" style="margin-right: 0.5rem">Trust Workbook Links Prompt
                 <div class="info-container">
                     <div class="hoverable">🛈</div>
-                    <div class="tooltip">'Trust workbook links? This workbook links to data in external workbooks.'<br>This pop-up appears when external workbooks are referenced.<br><br>Check to auto-close (ignore and close the dialogue).</div>
+                    <div class="tooltip">'Trust workbook links? This workbook links to data in external workbooks.'<br>This pop-up appears when external workbooks are referenced.<br><br>Check to auto-close (ignore and close the dialog).</div>
+                </div>
+            </label>
+        </div>
+        <div class="row" id="blocked-row-6">
+            <label for="checkbox-1-6">
+                <input type="checkbox" id="checkbox-1-6" style="margin-right: 0.5rem">Can't Edit Workbook Dialog
+                <div class="info-container">
+                    <div class="hoverable">🛈</div>
+                    <div class="tooltip">'Can't Edit Workbook'<br>'Someone has this workbook locked'<br>'We're sorry. We couldn't lock this file for editing. Would you like to try again?'<br>This pop-up sometimes appears when trying to change to Editing mode.<br><br>Check to auto-select 'No'.</div>
+                </div>
+            </label>
+        </div>
+        <div class="row" id="blocked-row-7">
+            <label for="checkbox-1-7">
+                <input type="checkbox" id="checkbox-1-7" style="margin-right: 0.5rem">Unable to Refresh Prompt
+                <div class="info-container">
+                    <div class="hoverable">🛈</div>
+                    <div class="tooltip">'UNABLE TO REFRESH. We couldn't get updated values from a linked workbook.'<br>This pop-up sometimes appears when external workbooks cannot be reached.<br><br>Check to auto-close (ignore and close the dialog).</div>
+                </div>
+            </label>
+        </div>
+        <div class="row" id="blocked-row-8">
+            <label for="checkbox-1-8">
+                <input type="checkbox" id="checkbox-1-8" style="margin-right: 0.5rem">Need More Working Space? Pop-Up
+                <div class="info-container">
+                    <div class="hoverable">🛈</div>
+                    <div class="tooltip">'Need more working space?'<br>'Looks like your display is not optimised.'<br>'Toggle FullScreen to maximise screen space.'<br>This pop-up sometimes appears when the window is smaller.<br><br>Check to block the pop-up.</div>
+                </div>
+            </label>
+        </div>
+        <div class="row" id="blocked-row-9">
+            <label for="checkbox-1-9">
+                <input type="checkbox" id="checkbox-1-9" style="margin-right: 0.5rem">Frozen Rows Won't Scroll Dialog
+                <div class="info-container">
+                    <div class="hoverable">🛈</div>
+                    <div class="tooltip">'Frozen rows won't scroll'<br>'The visible area of your grid contains only frozen rows, which will not scroll. To scroll, unfreeze the rows, change the size of the Excel window, or zoom out.'<br>This pop-up appears when trying to scroll on a screen with no unfrozen cells visible.<br><br>Check to auto-select 'OK'.</div>
+                </div>
+            </label>
+        </div>
+        <div class="row" id="blocked-row-10">
+            <label for="checkbox-1-10">
+                <input type="checkbox" id="checkbox-1-10" style="margin-right: 0.5rem">Ctrl Paste Menu Pop-Up
+                <div class="info-container">
+                    <div class="hoverable">🛈</div>
+                    <div class="tooltip">Paste options menu that opens when pressing Ctrl.<br>This pop-up appears after pasting.<br><br>Check to block the pop-up.</div>
                 </div>
             </label>
         </div>
     </div>
+
+
+
 
     <div class="section" id="auto-approved-pop-ups">
         <h3>Auto-Approve Pop-Ups</h3>
@@ -100,7 +148,7 @@
                 <input type="checkbox" id="checkbox-2-4" style="margin-right: 0.5rem">Session About to Expire
                 <div class="info-container">
                     <div class="hoverable">🛈</div>
-                    <div class="tooltip">'Your session is about to expire'<br>Your organization's policy enforces automatic sign out after a period of inactivity on Office 365 web applications.<br>Do you want to stay signed in?<br><br>Check to auto-select 'Stay signed in'.</div>
+                    <div class="tooltip">'Your session is about to expire'<br>'Your organization's policy enforces automatic sign out after a period of inactivity on Office 365 web applications.'<br>'Do you want to stay signed in?'<br><br>Check to auto-select 'Stay signed in'.</div>
                 </div>
             </label>
         </div>
