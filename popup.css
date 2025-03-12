@@ -22,7 +22,37 @@ h2 {
     font-size: 1.6rem;
 }
 
+.add-button {
+    background: none;
+    border: none;
+    /* border-radius: 50%; */
+    width: 1.2rem;
+    cursor: pointer;
+    /* align-items: center; */
+    /* justify-content: center; */
+}
 
+.delete-button {
+    background: none;
+    border: none;
+    color: #d9534f;
+    font-weight: bold;
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+}
+
+.add-label {
+    cursor: pointer;
+}
+
+#new-row-2 {
+    display: none;
+}
+
+#new-row-3 {
+    display: none;
+}
 
 
 .info-container {
@@ -74,7 +104,9 @@ h2 {
 }
 
 
-
+input.error {
+    border-color: red;
+}
 
 
 

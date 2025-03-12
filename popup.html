@@ -14,95 +14,53 @@
             <div class="tooltip" id="intro-tooltip">Only dialogs contained in iframes with origin containing "https://*.<wbr>officeapps.<wbr>live.<wbr>com/" are suppressed.<br>To expand functionality to the overall page or to additional origins, please contact the developer.</div>
         </div>
     </div>
-    <p>Select which pop-ups to block below! EXTENDED BLURB DISCLAIMER SAYING THAT ALL MODIFICATIONS ARE USER-DECIDED</p>
+    <p>Select which pop-ups to block below!<br>Any modifications to the Excel Online experience are made solely at the user's discretion. Please use responsibly.</p>
     
+
+
+
 
     <div class="section" id="blocked-pop-ups">
         <h3>Block Pop-Ups</h3>
-        <div class="row" id="blocked-row-1">
+        <div class="row" id="row-1-1">
             <label for="checkbox-1-1">
-                <input type="checkbox" id="checkbox-1-1" style="margin-right: 0.5rem">Renaming Prompt
+                <input type="checkbox" id="checkbox-1-1" style="margin-right: 0.5rem">Calendar Pop-Up
+                <div class="info-container">
+                    <div class="hoverable">🛈</div>
+                    <div class="tooltip">This calendar blocks view of everything to the right of the current cell.<br>This pop-up appears when pressing Ctrl+; in Excel Online.<br><br>Check to block the pop-up.</div>
+                </div>
+            </label>
+        </div>
+        <div class="row" id="row-1-2">
+            <label for="checkbox-1-2">
+                <input type="checkbox" id="checkbox-1-2" style="margin-right: 0.5rem">Renaming Prompt
                 <div class="info-container">
                     <div class="hoverable">🛈</div>
                     <div class="tooltip">'We have autosaved your file. Ready to name it?'<br>This pop-up sometimes appears when pressing Ctrl+S in Excel Online.<br><br>Check to block the pop-up.</div>
                 </div>
             </label>
         </div>
-        <div class="row" id="blocked-row-2">
-            <label for="checkbox-1-2">
-                <input type="checkbox" id="checkbox-1-2" style="margin-right: 0.5rem">Calendar Pop-Up
-                <div class="info-container">
-                    <div class="hoverable">🛈</div>
-                    <div class="tooltip">'This calendar blocks view of everything to the right of the current cell.'<br>This pop-up appears when pressing Ctrl+; in Excel Online.<br><br>Check to block the pop-up.</div>
-                </div>
-            </label>
-        </div>
-        <div class="row" id="blocked-row-3">
+        <div class="row" id="row-1-3">
             <label for="checkbox-1-3">
-                <input type="checkbox" id="checkbox-1-3" style="margin-right: 0.5rem">Reserved Shortcut Pop-Up
-                <div class="info-container">
-                    <div class="hoverable">🛈</div>
-                    <div class="tooltip">'Your browser reserves some shortcuts. Find the list of alternatives here.'<br>This pop-up sometimes appears when using hotkeys in Excel Online.<br><br>Check to block the pop-up.</div>
-                </div>
-            </label>
-        </div>
-        <div class="row" id="blocked-row-4">
-            <label for="checkbox-1-4">
-                <input type="checkbox" id="checkbox-1-4" style="margin-right: 0.5rem">Microsoft 365 Access Prompt
-                <div class="info-container">
-                    <div class="hoverable">🛈</div>
-                    <div class="tooltip">'Allow access to Microsoft 365 account. Your browser settings are preventing an optimal experience with Microsoft 365. Allow access to improve your experience.'<br>This pop-up sometimes appears when accessing another organization's files.<br><br>Check to auto-close (ignore and close the dialog).</div>
-                </div>
-            </label>
-        </div>
-        <div class="row" id="blocked-row-5">
-            <label for="checkbox-1-5">
-                <input type="checkbox" id="checkbox-1-5" style="margin-right: 0.5rem">Trust Workbook Links Prompt
-                <div class="info-container">
-                    <div class="hoverable">🛈</div>
-                    <div class="tooltip">'Trust workbook links? This workbook links to data in external workbooks.'<br>This pop-up appears when external workbooks are referenced.<br><br>Check to auto-close (ignore and close the dialog).</div>
-                </div>
-            </label>
-        </div>
-        <div class="row" id="blocked-row-6">
-            <label for="checkbox-1-6">
-                <input type="checkbox" id="checkbox-1-6" style="margin-right: 0.5rem">Can't Edit Workbook Dialog
-                <div class="info-container">
-                    <div class="hoverable">🛈</div>
-                    <div class="tooltip">'Can't Edit Workbook'<br>'Someone has this workbook locked'<br>'We're sorry. We couldn't lock this file for editing. Would you like to try again?'<br>This pop-up sometimes appears when trying to change to Editing mode.<br><br>Check to auto-select 'No'.</div>
-                </div>
-            </label>
-        </div>
-        <div class="row" id="blocked-row-7">
-            <label for="checkbox-1-7">
-                <input type="checkbox" id="checkbox-1-7" style="margin-right: 0.5rem">Unable to Refresh Prompt
-                <div class="info-container">
-                    <div class="hoverable">🛈</div>
-                    <div class="tooltip">'UNABLE TO REFRESH. We couldn't get updated values from a linked workbook.'<br>This pop-up sometimes appears when external workbooks cannot be reached.<br><br>Check to auto-close (ignore and close the dialog).</div>
-                </div>
-            </label>
-        </div>
-        <div class="row" id="blocked-row-8">
-            <label for="checkbox-1-8">
-                <input type="checkbox" id="checkbox-1-8" style="margin-right: 0.5rem">Need More Working Space? Pop-Up
+                <input type="checkbox" id="checkbox-1-3" style="margin-right: 0.5rem">Need More Working Space? Pop-Up
                 <div class="info-container">
                     <div class="hoverable">🛈</div>
                     <div class="tooltip">'Need more working space?'<br>'Looks like your display is not optimised.'<br>'Toggle FullScreen to maximise screen space.'<br>This pop-up sometimes appears when the window is smaller.<br><br>Check to block the pop-up.</div>
                 </div>
             </label>
         </div>
-        <div class="row" id="blocked-row-9">
-            <label for="checkbox-1-9">
-                <input type="checkbox" id="checkbox-1-9" style="margin-right: 0.5rem">Frozen Rows Won't Scroll Dialog
+        <div class="row" id="row-1-4">
+            <label for="checkbox-1-4">
+                <input type="checkbox" id="checkbox-1-4" style="margin-right: 0.5rem">Reserved Shortcut Pop-Up
                 <div class="info-container">
                     <div class="hoverable">🛈</div>
-                    <div class="tooltip">'Frozen rows won't scroll'<br>'The visible area of your grid contains only frozen rows, which will not scroll. To scroll, unfreeze the rows, change the size of the Excel window, or zoom out.'<br>This pop-up appears when trying to scroll on a screen with no unfrozen cells visible.<br><br>Check to auto-select 'OK'.</div>
+                    <div class="tooltip">'Your browser reserves some shortcuts.'<br>'Find the list of alternatives here.'<br>This pop-up sometimes appears when using hotkeys in Excel Online.<br><br>Check to block the pop-up.</div>
                 </div>
             </label>
         </div>
-        <div class="row" id="blocked-row-10">
-            <label for="checkbox-1-10">
-                <input type="checkbox" id="checkbox-1-10" style="margin-right: 0.5rem">Ctrl Paste Menu Pop-Up
+        <div class="row" id="row-1-5">
+            <label for="checkbox-1-5">
+                <input type="checkbox" id="checkbox-1-5" style="margin-right: 0.5rem">Ctrl Paste Menu
                 <div class="info-container">
                     <div class="hoverable">🛈</div>
                     <div class="tooltip">Paste options menu that opens when pressing Ctrl.<br>This pop-up appears after pasting.<br><br>Check to block the pop-up.</div>
@@ -114,36 +72,52 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <div class="section" id="auto-approved-pop-ups">
         <h3>Auto-Approve Pop-Ups</h3>
-        <div class="row" id="approved-row-1">
+        <div class="row" id="row-2-1">
             <label for="checkbox-2-1">
-                <input type="checkbox" id="checkbox-2-1" style="margin-right: 0.5rem">Editing Session in Progress
-                <div class="info-container">
-                    <div class="hoverable">🛈</div>
-                    <div class="tooltip">'Editing session in progress'<br>'Other people are already editing this workbook. You can join their editing session, but you will lose any changes you have made so far. Would you like to join the existing editing session anyway?'<br><br>Check to auto-select 'Yes'.</div>
-                </div>
-            </label>
-        </div>
-        <div class="row" id="approved-row-2">
-            <label for="checkbox-2-2">
-                <input type="checkbox" id="checkbox-2-2" style="margin-right: 0.5rem">Workbook Locked
+                <input type="checkbox" id="checkbox-2-1" style="margin-right: 0.5rem">Workbook Locked
                 <div class="info-container">
                     <div class="hoverable">🛈</div>
                     <div class="tooltip">'Someone has this workbook locked'<br>'_ has locked this file for editing. This may happen if they're using a non-subscription version of Excel. Ask them to close the file or check it in.'<br><br>Check to auto-select 'Continue in reading view'.</div>
                 </div>
             </label>
         </div>
-        <div class="row" id="approved-row-3">
-            <label for="checkbox-2-3">
-                <input type="checkbox" id="checkbox-2-3" style="margin-right: 0.5rem">Session Expired
+        <div class="row" id="row-2-2">
+            <label for="checkbox-2-2">
+                <input type="checkbox" id="checkbox-2-2" style="margin-right: 0.5rem">Frozen Rows Won't Scroll
                 <div class="info-container">
                     <div class="hoverable">🛈</div>
-                    <div class="tooltip">'Sorry, your session has expired. Please refresh the page to continue.'<br><br>Check to auto-select 'Refresh'.</div>
+                    <div class="tooltip">'Frozen rows won't scroll'<br>'The visible area of your grid contains only frozen rows, which will not scroll. To scroll, unfreeze the rows, change the size of the Excel window, or zoom out.'<br>This pop-up appears when trying to scroll on a screen with no unfrozen cells visible.<br><br>Check to auto-select 'OK'.</div>
                 </div>
             </label>
         </div>
-        <div class="row" id="approved-row-4">
+        <div class="row" id="row-2-3">
+            <label for="checkbox-2-3">
+                <input type="checkbox" id="checkbox-2-3" style="margin-right: 0.5rem">Editing Session in Progress
+                <div class="info-container">
+                    <div class="hoverable">🛈</div>
+                    <div class="tooltip">'Editing session in progress'<br>'Other people are already editing this workbook. You can join their editing session, but you will lose any changes you have made so far. Would you like to join the existing editing session anyway?'<br><br>Check to auto-select 'Yes'.</div>
+                </div>
+            </label>
+        </div>
+        <div class="row" id="row-2-4">
             <label for="checkbox-2-4">
                 <input type="checkbox" id="checkbox-2-4" style="margin-right: 0.5rem">Session About to Expire
                 <div class="info-container">
@@ -152,10 +126,106 @@
                 </div>
             </label>
         </div>
+        <div class="row" id="row-2-5">
+            <label for="checkbox-2-5">
+                <input type="checkbox" id="checkbox-2-5" style="margin-right: 0.5rem">Session Expired
+                <div class="info-container">
+                    <div class="hoverable">🛈</div>
+                    <div class="tooltip">'Sorry, your session has expired. Please refresh the page to continue.'<br><br>Check to auto-select 'Refresh'.</div>
+                </div>
+            </label>
+        </div>
+        <!-- <div class="row" id="addl-row-2-1">
+            <label for="addl-checkbox-2-1">
+                <input type="checkbox" id="addl-checkbox-2-1" style="margin-right: 0.5rem">New Name
+                <div class="info-container">
+                    <div class="hoverable">🛈</div>
+                    <div class="tooltip">Pop-Up Text: 'Example inputted pop-up text'<br><br>Check to auto-select Button Label: 'Example inputted button label'.</div>
+                </div>
+            </label>
+            <button class="delete-button" id="delete-row-2-1">&times;</button>
+        </div> -->
+        <div class="row" id="new-row-2" style="display: flexbox; float:left;">
+            <button id="new-save-button-2" class="add-button" title="Save New Row">+</button>
+            <input type="text" id="new-name-2" placeholder="Name" style="width:15%">
+            <input type="text" id="new-text-2" placeholder="Pop-Up Text" style="width:28%">
+            <input type="text" id="new-label-2" placeholder="Button Label" style="width:28%">
+            <div class="info-container">
+                <div class="hoverable">🛈</div>
+                <div class="tooltip">Name: Input the name you would like to label this item as.<br><br>Pop-Up Text: Text which is visible on the pop-up. The extension will look for this text as an indication that the pop-up has appeared.<br><br>Button Label: Exact text on the button that will be automatically clicked. The extension will look for a button with aria-label matching this. Most X's have aria-label="Close".<br><br>Saving: Press Enter to save, or press the "+" button to the left of your entry.</div>
+            </div>
+            <button class="delete-button" id="cancel-new-row-2">&times;</button>
+        </div>
+        <div class="row" id="add-row-2">
+            <label for="add-button-2" class="add-label">
+                <button id="add-button-2" class="add-button" title="Add New Row" style="margin-right: 0.5rem">+</button>Add New Row
+            </label>
+        </div>
     </div>
 
-    <h3>Additional Blocked Strings</h3>
+
+
     
+
+
+
+    <div class="section" id="auto-close-pop-ups">
+        <h3>Auto-Close Pop-Ups</h3>
+        <div class="row" id="row-3-1">
+            <label for="checkbox-3-1">
+                <input type="checkbox" id="checkbox-3-1" style="margin-right: 0.5rem">Can't Edit Workbook Dialog
+                <div class="info-container">
+                    <div class="hoverable">🛈</div>
+                    <div class="tooltip">'Can't Edit Workbook'<br>'Someone has this workbook locked'<br>'We're sorry. We couldn't lock this file for editing. Would you like to try again?'<br>This pop-up sometimes appears when trying to change to Editing mode.<br><br>Check to auto-select 'No'.</div>
+                </div>
+            </label>
+        </div>
+        <div class="row" id="row-3-2">
+            <label for="checkbox-3-2">
+                <input type="checkbox" id="checkbox-3-2" style="margin-right: 0.5rem">Trust Workbook Links Banner
+                <div class="info-container">
+                    <div class="hoverable">🛈</div>
+                    <div class="tooltip">'Trust workbook links? This workbook links to data in external workbooks.'<br>This pop-up appears when external workbooks are referenced.<br><br>Check to auto-close (ignore and close the dialog).</div>
+                </div>
+            </label>
+        </div>
+        <div class="row" id="row-3-3">
+            <label for="checkbox-3-3">
+                <input type="checkbox" id="checkbox-3-3" style="margin-right: 0.5rem">Unable to Refresh Links Banner
+                <div class="info-container">
+                    <div class="hoverable">🛈</div>
+                    <div class="tooltip">'UNABLE TO REFRESH. We couldn't get updated values from a linked workbook.'<br>This pop-up sometimes appears when external workbooks cannot be reached.<br><br>Check to auto-close (ignore and close the dialog).</div>
+                </div>
+            </label>
+        </div>
+        <div class="row" id="row-3-4">
+            <label for="checkbox-3-4">
+                <input type="checkbox" id="checkbox-3-4" style="margin-right: 0.5rem">Microsoft 365 Access Banner
+                <div class="info-container">
+                    <div class="hoverable">🛈</div>
+                    <div class="tooltip">'Allow access to Microsoft 365 account. Your browser settings are preventing an optimal experience with Microsoft 365. Allow access to improve your experience.'<br><br>Check to auto-close (ignore and close the dialog).</div>
+                </div>
+            </label>
+        </div>
+        <div class="row" id="new-row-3" style="display: flexbox; float:left;">
+            <button id="new-save-button-3" class="add-button" title="Save New Row">+</button>
+            <input type="text" id="new-name-3" placeholder="Name" style="width:15%">
+            <input type="text" id="new-text-3" placeholder="Pop-Up Text" style="width:30%">
+            <input type="text" id="new-label-3" placeholder="Button Label" style="width:30%">
+            <div class="info-container">
+                <div class="hoverable">🛈</div>
+                <div class="tooltip">Name: Input the name you would like to label this item as.<br><br>Pop-Up Text: Text which is visible on the pop-up. The extension will look for this text as an indication that the pop-up has appeared.<br><br>Button Label: Exact text on the button that will be automatically clicked. The extension will look for a button with aria-label matching this. Most X's have aria-label="Close".<br><br>Saving: Press Enter to save, or press the "+" button to the left of your entry.</div>
+            </div>
+        </div>
+        <div class="row" id="add-row-3">
+            <label for="add-button-3" class="add-label">
+                <button id="add-button-3" class="add-button" title="Add New Row" style="margin-right: 0.5rem">+</button>Add New Row
+            </label>
+        </div>
+    </div>
+
+
+
     <h3>Settings</h3>
 
 
