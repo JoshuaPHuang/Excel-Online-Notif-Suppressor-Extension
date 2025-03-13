@@ -26,5 +26,11 @@
   "action": {
     "default_popup": "popup.html",
     "default_icon": "custom_excel_suppressor.png"
-  }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["logs.html", "acknowledgments.html", "defaults.json"],
+      "matches": ["<all_urls>"]
+    }
+  ]
 }

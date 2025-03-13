@@ -81,6 +81,8 @@ Thicken lines in Excel right symbol
 Fill in the back with light gray?
 
 
+Add copyright license to the Github
+
 
 
 Create new Github Repository and add to LinkedIn and resume

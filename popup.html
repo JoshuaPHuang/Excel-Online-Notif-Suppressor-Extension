@@ -20,9 +20,9 @@
 
 
 
-    <div class="section" id="blocked-pop-ups">
+    <div class="section 1" id="blocked-pop-ups">
         <h3>Block Pop-Ups</h3>
-        <div class="row" id="row-1-1">
+        <!-- <div class="row" id="row-1-1">
             <label for="checkbox-1-1">
                 <input type="checkbox" id="checkbox-1-1" style="margin-right: 0.5rem">Calendar Pop-Up
                 <div class="info-container">
@@ -66,7 +66,7 @@
                     <div class="tooltip">Paste options menu that opens when pressing Ctrl.<br>This pop-up appears after pasting.<br><br>Check to block the pop-up.</div>
                 </div>
             </label>
-        </div>
+        </div> -->
     </div>
 
 
@@ -88,9 +88,9 @@
 
 
 
-    <div class="section" id="auto-approved-pop-ups">
+    <div class="section 2" id="auto-approved-pop-ups">
         <h3>Auto-Approve Pop-Ups</h3>
-        <div class="row" id="row-2-1">
+        <!-- <div class="row" id="row-2-1">
             <label for="checkbox-2-1">
                 <input type="checkbox" id="checkbox-2-1" style="margin-right: 0.5rem">Workbook Locked
                 <div class="info-container">
@@ -134,7 +134,7 @@
                     <div class="tooltip">'Sorry, your session has expired. Please refresh the page to continue.'<br><br>Check to auto-select 'Refresh'.</div>
                 </div>
             </label>
-        </div>
+        </div> -->
         <!-- <div class="row" id="addl-row-2-1">
             <label for="addl-checkbox-2-1">
                 <input type="checkbox" id="addl-checkbox-2-1" style="margin-right: 0.5rem">New Name
@@ -169,9 +169,9 @@
 
 
 
-    <div class="section" id="auto-close-pop-ups">
+    <div class="section 3" id="auto-closed-pop-ups">
         <h3>Auto-Close Pop-Ups</h3>
-        <div class="row" id="row-3-1">
+        <!-- <div class="row" id="row-3-1">
             <label for="checkbox-3-1">
                 <input type="checkbox" id="checkbox-3-1" style="margin-right: 0.5rem">Can't Edit Workbook Dialog
                 <div class="info-container">
@@ -206,7 +206,7 @@
                     <div class="tooltip">'Allow access to Microsoft 365 account. Your browser settings are preventing an optimal experience with Microsoft 365. Allow access to improve your experience.'<br><br>Check to auto-close (ignore and close the dialog).</div>
                 </div>
             </label>
-        </div>
+        </div> -->
         <div class="row" id="new-row-3" style="display: flexbox; float:left;">
             <button id="new-save-button-3" class="add-button" title="Save New Row">+</button>
             <input type="text" id="new-name-3" placeholder="Name" style="width:15%">
@@ -226,20 +226,34 @@
 
 
 
-    <h3>Settings</h3>
+
+    
+    <div class="section 4" id="settings">
+        <h3>Settings</h3>
+        <!-- <div class="row" id="row-4-1">
+            <label for="checkbox-4-1">
+                <input type="checkbox" id="checkbox-4-1" style="margin-right: 0.5rem">Enable Desktop Notifications
+            </label>
+        </div> -->
+        <div class="row" id="row-4-2">
+            <a href="logs.html" target="_blank">View Logs</a>
+        </div>
+        <div class="row" id="row-4-3">
+            <a href="https://github.com/JoshuaPHuang/Excel-Online-Notif-Suppressor-Extension" target="_blank">View Github Repository</a>
+        </div>
+        <div class="row" id="row-4-4">
+            <a href="acknowledgments.html" target="_blank">View Acknowledgments</a>
+        </div>
+    </div>
 
 
-    <p>—Joshua Huang</p>
-    <p id="github-txt">View <a href="https://github.com/JoshuaPHuang/Excel-Online-Notif-Suppressor-Extension.git" target="_blank">GitHub Repository</a></p>
     
     <script src="popup.js"></script>
 </body>
 </html>
 
-<div class="info-container" id="intro-hoverable">🛈
-    <div class="tooltip"></div>
-</div>
- 
+<br><br><br><br><br><br><br><br>
+ANYTHING BELOW THIS LINE SHOULD BE IGNORED; THESE ARE JUST NOTES
 /*
 Introduction?
 - Explain that only elements found within the iframe can be removed; or? only the one that matches https://usc-excel.officeapps.live.com?

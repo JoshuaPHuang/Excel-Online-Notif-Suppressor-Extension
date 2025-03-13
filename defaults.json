@@ -1,0 +1,137 @@
+{
+    "1-1": {
+        "idNumStr": "1-1",
+        "section": "1",
+        "name": "Calendar Pop-Up",
+        "state": false,
+        "appended": false,
+        "text": "This calendar blocks view of everything to the right of the current cell.<br>This pop-up appears when pressing Ctrl+; in Excel Online.",
+        "label": "Check to block the pop-up."
+    },
+    "1-2": {
+        "idNumStr": "1-2",
+        "section": "1",
+        "name": "Renaming Prompt",
+        "state": false,
+        "appended": false,
+        "text": "'We have autosaved your file. Ready to name it?'<br>This pop-up sometimes appears when pressing Ctrl+S in Excel Online.",
+        "label": "Check to block the pop-up."
+    },
+    "1-3": {
+        "idNumStr": "1-3",
+        "section": "1",
+        "name": "Need More Working Space? Pop-Up",
+        "state": false,
+        "appended": false,
+        "text": "'Need more working space?'<br>'Looks like your display is not optimised.'<br>'Toggle FullScreen to maximise screen space.'<br>This pop-up sometimes appears when the window is smaller.",
+        "label": "Check to block the pop-up."
+    },
+    "1-4": {
+        "idNumStr": "1-4",
+        "section": "1",
+        "name": "Reserved Shortcut Pop-Up",
+        "state": false,
+        "appended": false,
+        "text": "'Your browser reserves some shortcuts.'<br>'Find the list of alternatives here.'<br>This pop-up sometimes appears when using hotkeys in Excel Online.",
+        "label": "Check to block the pop-up."
+    },
+    "1-5": {
+        "idNumStr": "1-5",
+        "section": "1",
+        "name": "Ctrl Paste Menu",
+        "state": false,
+        "appended": false,
+        "text": "Paste options menu that opens when pressing Ctrl.<br>This pop-up appears after pasting.",
+        "label": "Check to block the pop-up."
+    },
+    "2-1": {
+        "idNumStr": "2-1",
+        "section": "2",
+        "name": "Workbook Locked",
+        "state": false,
+        "appended": false,
+        "text": "'Someone has this workbook locked'<br>'_ has locked this file for editing. This may happen if they're using a non-subscription version of Excel. Ask them to close the file or check it in.'",
+        "label": "Check to auto-select 'Continue in reading view'."
+    },
+    "2-2": {
+        "idNumStr": "2-2",
+        "section": "2",
+        "name": "Frozen Rows Won't Scroll",
+        "state": false,
+        "appended": false,
+        "text": "'Frozen rows won't scroll'<br>'The visible area of your grid contains only frozen rows, which will not scroll. To scroll, unfreeze the rows, change the size of the Excel window, or zoom out.'<br>This pop-up appears when trying to scroll on a screen with no unfrozen cells visible.",
+        "label": "Check to auto-select 'OK'."
+    },
+    "2-3": {
+        "idNumStr": "2-3",
+        "section": "2",
+        "name": "Editing Session in Progress",
+        "state": false,
+        "appended": false,
+        "text": "'Editing session in progress'<br>'Other people are already editing this workbook. You can join their editing session, but you will lose any changes you have made so far. Would you like to join the existing editing session anyway?'",
+        "label": "Check to auto-select 'Yes'."
+    },
+    "2-4": {
+        "idNumStr": "2-4",
+        "section": "2",
+        "name": "Session About to Expire",
+        "state": false,
+        "appended": false,
+        "text": "'Your session is about to expire'<br>'Your organization's policy enforces automatic sign out after a period of inactivity on Office 365 web applications.'<br>'Do you want to stay signed in?'",
+        "label": "Check to auto-select 'Stay signed in'."
+    },
+    "2-5": {
+        "idNumStr": "2-5",
+        "section": "2",
+        "name": "Session Expired",
+        "state": false,
+        "appended": false,
+        "text": "'Sorry, your session has expired. Please refresh the page to continue.'",
+        "label": "Check to auto-select 'Refresh'."
+    },
+    "3-1": {
+        "idNumStr": "3-1",
+        "section": "3",
+        "name": "Can't Edit Workbook Dialog",
+        "state": false,
+        "appended": false,
+        "text": "'Can't Edit Workbook'<br>'Someone has this workbook locked'<br>'We're sorry. We couldn't lock this file for editing. Would you like to try again?'<br>This pop-up sometimes appears when trying to change to Editing mode.",
+        "label": "Check to auto-select 'No'."
+    },
+    "3-2": {
+        "idNumStr": "3-2",
+        "section": "3",
+        "name": "Trust Workbook Links Banner",
+        "state": false,
+        "appended": false,
+        "text": "'Trust workbook links? This workbook links to data in external workbooks.'<br>This pop-up appears when external workbooks are referenced.",
+        "label": "Check to auto-close (ignore and close the dialog)."
+    },
+    "3-3": {
+        "idNumStr": "3-3",
+        "section": "3",
+        "name": "Unable to Refresh Links Banner",
+        "state": false,
+        "appended": false,
+        "text": "'UNABLE TO REFRESH. We couldn't get updated values from a linked workbook.'<br>This pop-up sometimes appears when external workbooks cannot be reached.",
+        "label": "Check to auto-close (ignore and close the dialog)."
+    },
+    "3-4": {
+        "idNumStr": "3-4",
+        "section": "3",
+        "name": "Microsoft 365 Access Banner",
+        "state": false,
+        "appended": false,
+        "text": "'Allow access to Microsoft 365 account. Your browser settings are preventing an optimal experience with Microsoft 365. Allow access to improve your experience.'",
+        "label": "Check to auto-close (ignore and close the dialog)."
+    },
+    "4-1": {
+        "idNumStr": "4-1",
+        "section": "4",
+        "name": "Enable Desktop Notifications",
+        "state": false,
+        "appended": false,
+        "text": "Helpful to see if a particular pop-up is being successfully blocked.",
+        "label": "Check to start sending notifications to Windows when something is successfully suppressed."
+    }
+}
