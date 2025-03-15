@@ -8,7 +8,9 @@
   "permissions": [
     "notifications",
     "activeTab",
-    "storage"
+    "storage",
+    "webNavigation",
+    "tabs"
   ],
   "icons": {
     "128": "custom_excel_suppressor_128.png"

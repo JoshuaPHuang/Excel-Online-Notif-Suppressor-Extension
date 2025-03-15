@@ -167,4 +167,25 @@ const iframePattern = new RegExp('https://.*\\.officeapps\\.live\\.com');
 if (document.location.origin.match(iframePattern))
 {
     start_excel_observer();
+
+
+    ///////////////////////////////////////////////////////////////////////
+    chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+        if (message && message.message === "Hello from popup!") {
+            // Log the message received
+            console.log("Received message in iframe:", message.message);
+            sendResponse({status: "Message received and processed."});
+        }
+    });
+
+
+
+
 }
+
+
+
+
+
+
+

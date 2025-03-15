@@ -93,6 +93,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const beforeElemD = {"1": null, "2": newRow2, "3": newRow3, "4": null}
 
+    // Create a queue class to hold read and write functions to local storage
+    const memQueue = new PromiseQueue();
+
     // Add all rows to popup.html (after syncing defaults.json and local memory)
     let defaultMemPromise = fetch(chrome.runtime.getURL("defaults.json")).then(response => response.json())// Get defaults dict from defaults.json file
     let localMemPromise = new Promise((resolve) => { // Get the local memory from chrome local storage
@@ -137,8 +140,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             });
         }
+        // Order keys numerically upwards
+        let sortedKeys = Object.keys(localMem).sort((a, b) => {
+            let numA = parseInt(a.split("-")[1], 10);
+            let numB = parseInt(b.split("-")[1], 10);
+            return numA - numB;
+        });
         // Populate popup.html with all items from the current updated memory
-        for (let key in localMem) {
+        for (let key of sortedKeys) {
             // console.log(key)
             // console.log(localMem[key])
             appendRow(localMem[key]);
@@ -153,14 +162,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-
-
     // Set an event listener to reset the error class of an input element every time an input occurs on that element
     let inputsArr = Array.from(document.getElementsByTagName('input'));
     inputsArr.forEach(inputElem => inputElem.addEventListener("input", () => resetErrorClass(inputElem)));
     
     // ADDING NEW ROWS
     addButton2.addEventListener("click", function() { // Show new approve row input, hide "Add New Row", reset block input
+        refreshCSjs();
         showHideElems(newRow2, addRow2);
         showHideElems(addRow3, newRow3);
         inputsArr.forEach(resetErrorClass);
@@ -180,43 +188,48 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         if (hasEmpty) return; // Return if any of them are empty
         // Get the index for the 2nd part of idNumStr
-        let newIdInd = 101;
-        chrome.storage.local.get(["xlpbMem"], (result) => {
-            let localMem = result.xlpbMem || {};
-            appendedKeys = new Set([...Object.keys(localMem).filter(key => (localMem[key].appended === true && localMem[key].section == "2"))]); // Get set of keys that are appended and are in the correct section
-            let takenIndSet = new Set();
-            appendedKeys.forEach(key => { // Find all currently taken indices
-                let idNumParts = key.split("-");
-                let idNumInd = parseInt(idNumParts[1], 10);
-                takenIndSet.add(idNumInd);
+        return memQueue.add(() => {
+            return new Promise((resolve, reject) => {
+                chrome.storage.local.get(["xlpbMem"], (result) => {
+                    let newIdInd = 101;
+                    let localMem = result.xlpbMem || {};
+                    appendedKeys = new Set([...Object.keys(localMem).filter(key => (localMem[key].appended === true && localMem[key].section == "2"))]); // Get set of keys that are appended and are in the correct section
+                    let takenIndSet = new Set();
+                    appendedKeys.forEach(key => { // Find all currently taken indices
+                        let idNumParts = key.split("-");
+                        let idNumInd = parseInt(idNumParts[1], 10);
+                        takenIndSet.add(idNumInd);
+                    })
+                    while (takenIndSet.has(newIdInd)) {
+                        newIdInd++;
+                    }
+                    // console.log(`newIdInd:${String(newIdInd)}`)
+                    // Create the rowItem to append and add to local storage
+                    rowItem = {
+                        idNumStr: `2-${newIdInd}`,
+                        section: "2",
+                        name: nameInput2.value,
+                        state: true,
+                        appended: true,
+                        text: textInput2.value,
+                        label: labelInput2.value,
+                    };
+                    // Append the row to popup.html
+                    appendRow(rowItem);
+                    // Add the rowItem to local memory and write back to storage
+                    localMem[rowItem.idNumStr] = rowItem;
+                    chrome.storage.local.set({ xlpbMem: localMem }, () => {
+                        if (chrome.runtime.lastError) {
+                            console.error("Error saving to local storage:", chrome.runtime.lastError);
+                        }
+                    });
+                    // Clean up
+                    showHideElems(addRow2, newRow2);
+                    clearInputs();
+                    resolve();
+                });
             })
-            while (takenIndSet.has(newIdInd)) {
-                newIdInd++;
-            }
-            // console.log(`newIdInd:${String(newIdInd)}`)
-            // Create the rowItem to append and add to local storage
-            rowItem = {
-                idNumStr: `2-${newIdInd}`,
-                section: "2",
-                name: nameInput2.value,
-                state: true,
-                appended: true,
-                text: textInput2.value,
-                label: labelInput2.value,
-            };
-            // Append the row to popup.html
-            appendRow(rowItem);
-            // Add the rowItem to local memory and write back to storage
-            localMem[rowItem.idNumStr] = rowItem;
-            chrome.storage.local.set({ xlpbMem: localMem }, () => {
-                if (chrome.runtime.lastError) {
-                    console.error("Error saving to local storage:", chrome.runtime.lastError);
-                }
-            });
-            // Clean up
-            showHideElems(addRow2, newRow2);
-            clearInputs();
-        });
+        })
     });
 
     // Function to add a new row before the new-row input row
@@ -258,22 +271,56 @@ document.addEventListener("DOMContentLoaded", function () {
         const rowToDel = event.target.closest(".row"); // Closest element with class row
         if (rowToDel) {
             let idNumStr = rowToDel.id.replace("row-", "");
-            chrome.storage.local.get(["xlpbMem"], (result) => {
-                let localMem = result.xlpbMem || {};
-                // Delete the rowItem from local storage and write back
-                delete localMem[idNumStr];
-                chrome.storage.local.set({ xlpbMem: localMem }, () => {
-                    if (chrome.runtime.lastError) {
-                        console.error("Error saving to local storage:", chrome.runtime.lastError);
-                    }
-                });
-            });
-            // Remove the row from .html
-            rowToDel.remove();
+            return memQueue.add(() => {
+                return new Promise((resolve, reject) => {
+                    chrome.storage.local.get(["xlpbMem"], (result) => {
+                        let localMem = result.xlpbMem || {};
+                        // Delete the rowItem from local storage and write back
+                        delete localMem[idNumStr];
+                        chrome.storage.local.set({ xlpbMem: localMem }, () => {
+                            if (chrome.runtime.lastError) {
+                                console.error("Error saving to local storage:", chrome.runtime.lastError);
+                            }
+                        });
+                    });
+                    // Remove the row from .html
+                    rowToDel.remove();
+                    resolve();
+                })
+            })
         }
     }
 
 
+    // Function to send a refresh signal to the contentScript so it re-reads the current contents of local memory
+    function refreshCSjs() {
+        // Query all open tabs to find iframes with the matching URL
+        chrome.tabs.query({}, (tabs) => {
+            tabs.forEach((tab) => {
+                // Get all frames in each tab
+                chrome.webNavigation.getAllFrames({tabId: tab.id}, (frames) => {
+                    frames.forEach((frame) => {
+                        // Check if the frame is an iframe and has the matching URL
+                        if (frame.parentFrameId !== 0 && frame.url && frame.url.startsWith("https://") && frame.url.includes("usc-excel.officeapps.live.com")) {
+                            // Send a message to the iframe
+                            chrome.scripting.executeScript({
+                                target: {tabId: tab.id, frameId: frame.frameId},
+                                function: sendMessageToIframe,
+                            });
+                        }
+                    });
+                });
+            });
+        });
+    }
+
+
+    // Function to send the message to an iframe
+    function sendMessageToIframe() {
+        chrome.runtime.sendMessage({message: "Hello from popup!"}, (response) => {
+            console.log("Message sent to iframe:", response);
+        });
+    }
 
 
     xlpbMem = {

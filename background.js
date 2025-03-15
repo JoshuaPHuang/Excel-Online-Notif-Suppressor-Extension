@@ -9,3 +9,18 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
         })
     }
 });
+
+
+// chrome.tabs.query({}, (tabs) => { // Get all tabs
+//     tabs.forEach((tab) => {
+//         chrome.webNavigation.getAllFrames({ tabId: tab.id }, (frames) => {
+//             if (frames) {
+//                 frames.forEach((frame) => {
+//                     // if (frame.url.includes("officeapps.live.com") && frame.frameId && frame.parentFrameId !== 0) {
+//                     console.log(`FrameId: ${frame.frameId}, URL: ${frame.url}, TabId: ${tab.id}`);
+//                     // }
+//                 });
+//             }
+//         });
+//     });
+// });
