@@ -6,7 +6,9 @@
         "state": false,
         "appended": false,
         "text": "This calendar blocks view of everything to the right of the current cell.<br>This pop-up appears when pressing Ctrl+; in Excel Online.",
-        "label": "Check to block the pop-up."
+        "label": "Check to block the pop-up.",
+        "xpath": "//div[contains(@aria-label, 'Selected date')]",
+        "method": "REMOVE"
     },
     "1-2": {
         "idNumStr": "1-2",
@@ -15,7 +17,9 @@
         "state": false,
         "appended": false,
         "text": "'We have autosaved your file. Ready to name it?'<br>This pop-up sometimes appears when pressing Ctrl+S in Excel Online.",
-        "label": "Check to block the pop-up."
+        "label": "Check to block the pop-up.",
+        "xpath": "//div[@class='RenamePromptCalloutHeader']",
+        "method": "REMOVE"
     },
     "1-3": {
         "idNumStr": "1-3",
@@ -24,7 +28,9 @@
         "state": false,
         "appended": false,
         "text": "'Need more working space?'<br>'Looks like your display is not optimised.'<br>'Toggle FullScreen to maximise screen space.'<br>This pop-up sometimes appears when the window is smaller.",
-        "label": "Check to block the pop-up."
+        "label": "Check to block the pop-up.",
+        "xpath": "//label[contains(text(), 'Need more working space')]",
+        "method": ".//button[@aria-label='Close']"
     },
     "1-4": {
         "idNumStr": "1-4",
@@ -33,7 +39,9 @@
         "state": false,
         "appended": false,
         "text": "'Your browser reserves some shortcuts.'<br>'Find the list of alternatives here.'<br>This pop-up sometimes appears when using hotkeys in Excel Online.",
-        "label": "Check to block the pop-up."
+        "label": "Check to block the pop-up.",
+        "xpath": "//button[@id='KeyboardShortcutAwarenessCalloutCloseButton']/parent::*/parent::*/parent::*",
+        "method": "REMOVE"
     },
     "1-5": {
         "idNumStr": "1-5",
@@ -42,8 +50,11 @@
         "state": false,
         "appended": false,
         "text": "Paste options menu that opens when pressing Ctrl.<br>This pop-up appears after pasting.",
-        "label": "Check to block the pop-up."
+        "label": "Check to block the pop-up.",
+        "xpath": "//div[@id='PasteRecoveryUIGroup']",
+        "method": "REMOVE"
     },
+
     "2-1": {
         "idNumStr": "2-1",
         "section": "2",
@@ -51,7 +62,9 @@
         "state": false,
         "appended": false,
         "text": "'Someone has this workbook locked'<br>'_ has locked this file for editing. This may happen if they're using a non-subscription version of Excel. Ask them to close the file or check it in.'",
-        "label": "Check to auto-select 'Continue in reading view'."
+        "label": "Check to auto-select 'Continue in reading view'.",
+        "xpath": "//*[contains(text(), 'Someone has this workbook locked')]",
+        "method": ".//button[@aria-label='Continue in reading view']"
     },
     "2-2": {
         "idNumStr": "2-2",
@@ -60,7 +73,9 @@
         "state": false,
         "appended": false,
         "text": "'Frozen rows won't scroll'<br>'The visible area of your grid contains only frozen rows, which will not scroll. To scroll, unfreeze the rows, change the size of the Excel window, or zoom out.'<br>This pop-up appears when trying to scroll on a screen with no unfrozen cells visible.",
-        "label": "Check to auto-select 'OK'."
+        "label": "Check to auto-select 'OK'.",
+        "xpath": "//div[contains(text(), 'Frozen rows won')]",
+        "method": ".//button[@aria-label='OK']"
     },
     "2-3": {
         "idNumStr": "2-3",
@@ -69,7 +84,9 @@
         "state": false,
         "appended": false,
         "text": "'Editing session in progress'<br>'Other people are already editing this workbook. You can join their editing session, but you will lose any changes you have made so far. Would you like to join the existing editing session anyway?'",
-        "label": "Check to auto-select 'Yes'."
+        "label": "Check to auto-select 'Yes'.",
+        "xpath": "",
+        "method": 
     },
     "2-4": {
         "idNumStr": "2-4",
@@ -78,17 +95,33 @@
         "state": false,
         "appended": false,
         "text": "'Your session is about to expire'<br>'Your organization's policy enforces automatic sign out after a period of inactivity on Office 365 web applications.'<br>'Do you want to stay signed in?'",
-        "label": "Check to auto-select 'Stay signed in'."
+        "label": "Check to auto-select 'Stay signed in'.",
+        "xpath": "",
+        "method": 
     },
     "2-5": {
         "idNumStr": "2-5",
         "section": "2",
-        "name": "Session Expired",
+        "name": "Session Expired (Refresh)",
         "state": false,
         "appended": false,
         "text": "'Sorry, your session has expired. Please refresh the page to continue.'",
-        "label": "Check to auto-select 'Refresh'."
+        "label": "Check to auto-select 'Refresh'.",
+        "xpath": "",
+        "method": 
     },
+    "2-6": {
+        "idNumStr": "2-6",
+        "section": "2",
+        "name": "Session Expired (Sign In Again)",
+        "state": false,
+        "appended": false,
+        "text": "'Sorry, your session has expired. Please sign in again to continue working.'",
+        "label": "Check to auto-select 'Sign in again'.",
+        "xpath": "",
+        "method": 
+    },
+
     "3-1": {
         "idNumStr": "3-1",
         "section": "3",
@@ -96,7 +129,9 @@
         "state": false,
         "appended": false,
         "text": "'Can't Edit Workbook'<br>'Someone has this workbook locked'<br>'We're sorry. We couldn't lock this file for editing. Would you like to try again?'<br>This pop-up sometimes appears when trying to change to Editing mode.",
-        "label": "Check to auto-select 'No'."
+        "label": "Check to auto-select 'No'.",
+        "xpath": "",
+        "method": 
     },
     "3-2": {
         "idNumStr": "3-2",
@@ -105,7 +140,9 @@
         "state": false,
         "appended": false,
         "text": "'Trust workbook links? This workbook links to data in external workbooks.'<br>This pop-up appears when external workbooks are referenced.",
-        "label": "Check to auto-close (ignore and close the dialog)."
+        "label": "Check to auto-close (ignore and close the dialog).",
+        "xpath": "",
+        "method": 
     },
     "3-3": {
         "idNumStr": "3-3",
@@ -114,7 +151,9 @@
         "state": false,
         "appended": false,
         "text": "'UNABLE TO REFRESH. We couldn't get updated values from a linked workbook.'<br>This pop-up sometimes appears when external workbooks cannot be reached.",
-        "label": "Check to auto-close (ignore and close the dialog)."
+        "label": "Check to auto-close (ignore and close the dialog).",
+        "xpath": "",
+        "method": 
     },
     "3-4": {
         "idNumStr": "3-4",
@@ -123,7 +162,9 @@
         "state": false,
         "appended": false,
         "text": "'Allow access to Microsoft 365 account. Your browser settings are preventing an optimal experience with Microsoft 365. Allow access to improve your experience.'",
-        "label": "Check to auto-close (ignore and close the dialog)."
+        "label": "Check to auto-close (ignore and close the dialog).",
+        "xpath": "",
+        "method": 
     },
     "4-1": {
         "idNumStr": "4-1",
@@ -132,6 +173,8 @@
         "state": false,
         "appended": false,
         "text": "Helpful to see if a particular pop-up is being successfully blocked.",
-        "label": "Check to start sending notifications to Windows when something is successfully suppressed."
+        "label": "Check to start sending notifications to Windows when something is successfully suppressed.",
+        "xpath": "",
+        "method": 
     }
 }
