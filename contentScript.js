@@ -1,3 +1,52 @@
+// // Debouncer function
+// function debounce(func, delay) {
+//     let timer;
+//     return function(...args) {
+//         clearTimeout(timer);
+//         timer = setTimeout(() => func.apply(this, args), delay);
+//     };
+// }
+
+
+// function advDebounce(func, delay) {
+//     let timer;
+//     let isFirstCall = true; // Track whether it's the first call after the timer ran out
+//     return function(...args) {
+//         if (isFirstCall) {
+//             func.apply(this, args); // Execute immediately on the first call
+//             isFirstCall = false;
+//         }
+//         clearTimeout(timer); // Clear any previous timer
+//         timer = setTimeout(() => {
+//             func.apply(this, args); // Execute after the delay
+//         }, delay);
+//     };
+// }
+// Debouncer function that runs the function instantly once if only called once; sets timeout to prevent duplicate calls; calls the function at the very end of the timeout and resets behavior
+function advDebounce(func, delay) {
+    let timer;
+    let isFirstCall = true; // Flag to track the first call
+    return function(...args) {
+        if (isFirstCall) {
+            func.apply(this, args); // Execute immediately on the first call
+            isFirstCall = false;
+        } else {
+            // Clear any existing timer and set a new one for subsequent calls
+            clearTimeout(timer);
+            timer = setTimeout(() => {
+                func.apply(this, args); // Execute after the delay
+                isFirstCall = true;
+            }, delay);
+        }
+    };
+}
+
+
+
+
+
+
+
 // Enable throttled notifications
 let last_notif_time = 0;
 function custom_notif(notif_txt)
@@ -67,15 +116,9 @@ class PromiseQueue {
 
 
 
-
-
-
-
-
 // Define the observers and promise queues globally so they can be managed
 let observer = null;
 let readQueue = new PromiseQueue();
-let searchQueue = new PromiseQueue();
 
 
 
@@ -99,6 +142,9 @@ if (document.location.origin.match(iframePattern))
     });
     // });
 }
+
+
+
 
 
 
@@ -155,37 +201,35 @@ function initXlObserver() {
 
 
 
-function refreshMutObserver(mem) {
+
+
+
+
+
+
+
+
+
+
+
+
+function refreshMutObserver(newMem) {
     if (observer) {
         observer.disconnect();
         console.log('Disconnected previous observer (attempt type 2).')
     }
     // Create new observer and assign it to the global var
     observer = new MutationObserver(function(mutations) {
+        // Check to see if there were any nodes added
+        let addedNodesFlag = false;
         mutations.forEach(function(mutation) {
             if (mutation.addedNodes.length > 0) { // If child elements were added
-                for (let key in mem) {
-                    console.log(`Looking for ${mem[key].name}: ${mem[key].xpath}`);
-                    let foundElem = null;
-                    if (mem[key].state !== true) {
-                        console.error(`Key ${key} .state !== true, please check the filter`);
-                        continue;
-                    }
-                    foundElem = searchXPath(document, mem[key].xpath);
-                    if (!foundElem) continue;
-                    console.log(`Found element with xpath ${mem[key].xpath}, suppresing...`)
-                    if (mem[key].method == "REMOVE") { // Remove the element entirely if remove is selected
-                        foundElem.remove();
-                    } else {
-                        try {
-                            nearestXPath(foundElem, mem[key].method).click(); // Click on the method button to interact w/ the dialog
-                        } catch (error) {
-                            console.log(`Error trying to click ${mem[key].method}: ${error}`);
-                        }
-                    }
-                }
+                addedNodesFlag = true;
             }
-        })
+        });
+        if (addedNodesFlag) {
+            debouncedSuppressor(newMem);
+        }
     })
     observer.observe(document.body, {
         childList: true, // Only listen to when child elements are added/removed
@@ -193,6 +237,30 @@ function refreshMutObserver(mem) {
     });
 }
 
+const debouncedSuppressor = advDebounce(function(arg) { suppressor(arg); }, 100);
+
+function suppressor(mem) {
+    for (let key in mem) {
+        console.log(`Looking for ${mem[key].name}: ${mem[key].xpath}`);
+        let foundElem = null;
+        if (mem[key].state !== true) {
+            console.error(`Key ${key} .state !== true, please check the filter`);
+            continue;
+        }
+        foundElem = searchXPath(document, mem[key].xpath);
+        if (!foundElem) continue;
+        console.log(`Found element with xpath ${mem[key].xpath}, suppresing...`)
+        if (mem[key].method == "REMOVE") { // Remove the element entirely if remove is selected
+            foundElem.remove();
+        } else {
+            try {
+                nearestXPath(foundElem, mem[key].method).click(); // Click on the method button to interact w/ the dialog
+            } catch (error) {
+                console.log(`Error trying to click ${mem[key].method}: ${error}`);
+            }
+        }
+    }
+}
 
 
 // // Function to start the MutationObserver for the excel iframe
