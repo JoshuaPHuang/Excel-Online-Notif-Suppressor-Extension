@@ -69,6 +69,17 @@
     "2-2": {
         "idNumStr": "2-2",
         "section": "2",
+        "name": "Excel Shortcuts Enabled",
+        "state": false,
+        "appended": false,
+        "text": "'Excel shortcuts enabled'<br>'To make Excel's keyboard shortcuts work in Excel for the web, we had to override some browser shortcuts. To undo this, go to Help, then select Keyboard Shortcuts, and uncheck Override browser shortcuts.'",
+        "label": "Check to auto-select 'Got it'.",
+        "xpath": "//label[contains(text(), 'Excel shortcuts enabled')]",
+        "method": ".//button[@aria-label='Got it']"
+    },
+    "2-3": {
+        "idNumStr": "2-3",
+        "section": "2",
         "name": "Frozen Rows Won't Scroll",
         "state": false,
         "appended": false,
@@ -77,49 +88,49 @@
         "xpath": "//div[contains(text(), 'Frozen rows won')]",
         "method": ".//button[@aria-label='OK']"
     },
-    "2-3": {
-        "idNumStr": "2-3",
+    "2-4": {
+        "idNumStr": "2-4",
         "section": "2",
         "name": "Editing Session in Progress",
         "state": false,
         "appended": false,
         "text": "'Editing session in progress'<br>'Other people are already editing this workbook. You can join their editing session, but you will lose any changes you have made so far. Would you like to join the existing editing session anyway?'",
         "label": "Check to auto-select 'Yes'.",
-        "xpath": "",
-        "method": 
-    },
-    "2-4": {
-        "idNumStr": "2-4",
-        "section": "2",
-        "name": "Session About to Expire",
-        "state": false,
-        "appended": false,
-        "text": "'Your session is about to expire'<br>'Your organization's policy enforces automatic sign out after a period of inactivity on Office 365 web applications.'<br>'Do you want to stay signed in?'",
-        "label": "Check to auto-select 'Stay signed in'.",
-        "xpath": "",
-        "method": 
+        "xpath": "//div[contains(text(), 'Editing session in progress')]",
+        "method": ".//button[@aria-label='Yes']"
     },
     "2-5": {
         "idNumStr": "2-5",
-        "section": "2",
-        "name": "Session Expired (Refresh)",
-        "state": false,
-        "appended": false,
-        "text": "'Sorry, your session has expired. Please refresh the page to continue.'",
-        "label": "Check to auto-select 'Refresh'.",
-        "xpath": "",
-        "method": 
-    },
-    "2-6": {
-        "idNumStr": "2-6",
         "section": "2",
         "name": "Session Expired (Sign In Again)",
         "state": false,
         "appended": false,
         "text": "'Sorry, your session has expired. Please sign in again to continue working.'",
         "label": "Check to auto-select 'Sign in again'.",
-        "xpath": "",
-        "method": 
+        "xpath": "//*[contains(text(), 'Please sign in again to continue working')]",
+        "method": ".//button[@aria-label='Sign in again']"
+    },
+    "2-6": {
+        "idNumStr": "2-6",
+        "section": "2",
+        "name": "Session Expired (Refresh)",
+        "state": false,
+        "appended": false,
+        "text": "'Sorry, your session has expired. Please refresh the page to continue.'",
+        "label": "Check to auto-select 'Refresh'.",
+        "xpath": "//*[contains(text(), 'Please refresh the page to continue')]",
+        "method": ".//button[@aria-label='Refresh']"
+    },
+    "2-7": {
+        "idNumStr": "2-7",
+        "section": "2",
+        "name": "Session About to Expire",
+        "state": false,
+        "appended": false,
+        "text": "'Your session is about to expire'<br>'Your organization's policy enforces automatic sign out after a period of inactivity on Office 365 web applications.'<br>'Do you want to stay signed in?'",
+        "label": "Check to auto-select 'Stay signed in'.",
+        "xpath": "//*[contains(text(), 'Your session is about to expire')]",
+        "method": "//button[contains(@aria-label, 'signed in')]"
     },
 
     "3-1": {
@@ -130,8 +141,8 @@
         "appended": false,
         "text": "'Can't Edit Workbook'<br>'Someone has this workbook locked'<br>'We're sorry. We couldn't lock this file for editing. Would you like to try again?'<br>This pop-up sometimes appears when trying to change to Editing mode.",
         "label": "Check to auto-select 'No'.",
-        "xpath": "",
-        "method": 
+        "xpath": "//div[contains(text(), 'Someone has this workbook locked')]",
+        "method": ".//button[@aria-label='No']"
     },
     "3-2": {
         "idNumStr": "3-2",
@@ -141,8 +152,8 @@
         "appended": false,
         "text": "'Trust workbook links? This workbook links to data in external workbooks.'<br>This pop-up appears when external workbooks are referenced.",
         "label": "Check to auto-close (ignore and close the dialog).",
-        "xpath": "",
-        "method": 
+        "xpath": "//*[contains(text(), 'Trust workbook links')]",
+        "method": ".//button[@aria-label='Close']"
     },
     "3-3": {
         "idNumStr": "3-3",
@@ -152,8 +163,8 @@
         "appended": false,
         "text": "'UNABLE TO REFRESH. We couldn't get updated values from a linked workbook.'<br>This pop-up sometimes appears when external workbooks cannot be reached.",
         "label": "Check to auto-close (ignore and close the dialog).",
-        "xpath": "",
-        "method": 
+        "xpath": "//*[contains(text(), 'UNABLE TO REFRESH')]",
+        "method": ".//button[@aria-label='Close']"
     },
     "3-4": {
         "idNumStr": "3-4",
@@ -163,8 +174,8 @@
         "appended": false,
         "text": "'Allow access to Microsoft 365 account. Your browser settings are preventing an optimal experience with Microsoft 365. Allow access to improve your experience.'",
         "label": "Check to auto-close (ignore and close the dialog).",
-        "xpath": "",
-        "method": 
+        "xpath": "//span[contains(text(), 'Allow access to Microsoft 365 account')]",
+        "method": ".//button[@aria-label='Close']"
     },
     "4-1": {
         "idNumStr": "4-1",
@@ -175,6 +186,6 @@
         "text": "Helpful to see if a particular pop-up is being successfully blocked.",
         "label": "Check to start sending notifications to Windows when something is successfully suppressed.",
         "xpath": "",
-        "method": 
+        "method": ""
     }
 }

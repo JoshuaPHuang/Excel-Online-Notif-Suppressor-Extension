@@ -100,3 +100,67 @@ For transparency, consider including a Privacy Policy with the extension that ex
 Clear Descriptions: On your extension’s page on the Chrome Web Store, clearly state that this extension allows users to suppress non-essential pop-ups and provide full transparency about which pop-ups can be suppressed.
 
 Remove all security-related auto-approvals...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+NOTES FOR FINDING ELEMENTS:
+// STAY SIGNED IN (original)
+// "//span[contains(text(), 'Stay signed in')]"
+// click the closest button
+
+// 1-3: NEED MORE WORKING SPACE?
+// elem = searchXPath(document, "//label[contains(text(), 'Need more working space')]")
+// nearestXPath(elem, ".//button[@aria-label='Close']").click()
+
+// 1-5: DISABLE CTRL MENU
+// elem = searchXPath(document, "//div[@id='PasteRecoveryUIGroup']")
+// nearestXPath(elem, ".//div[@id='ReactFloatie']") OR okay to just remove PasteRecoveryUIGroup
+
+// 2-1: SOMEONE HAS THIS WORKBOOK LOCKED
+// elem = searchXPath(document, "//*[contains(text(), 'Someone has this workbook locked')]")
+// nearestXPath(elem, ".//button[@aria-label='Continue in reading view']")
+
+// 2-2: Excel shortcuts enabled
+// "//label[contains(text(), 'Excel shortcuts enabled')]"
+// nearestXPath(elem, ".//button[@aria-label='Got it']").click()
+
+// 2-2: FROZEN ROWS WON'T SCROLL
+// elem = searchXPath(document, "//div[contains(text(), 'Frozen rows won')]")
+// nearestXPath(elem, ".//button[@aria-label='OK']").click()
+
+// 2-3: EDITING SESSION IN PROGRESS
+// elem = searchXPath(document, "//div[contains(text(), 'Editing session in progress')]")
+// nearestXPath(elem, ".//button[@aria-label='Yes']").click()
+
+// 2-4: STAY SIGNED IN (new? with more lenient button xpath)
+// "//*[contains(text(), 'Your session is about to expire')]"
+// nearestXPath(elem, ".//button[contains(@aria-label, 'Stay signed in') or contains(text(), 'Stay signed in')]")
+
+// 2-6: SESSION EXPIRED (Sign In Again)
+// elem = searchXPath(document, "//span[contains(text(), 'Please sign in again to continue working')]")
+// nearestXPath(elem, ".//button[@aria-label='Sign in again']").click()
+
+
+// 3-2: TRUST WORKBOOK LINKS?
+// searchXPath(document, "//*[contains(text(), 'Trust workbook links')]")
+// nearestXPath(elem, ".//button[@aria-label='Close']").click()
+
+// 3-3: UNABLE TO REFRESH
+// searchXPath(document, "//*[contains(text(), 'UNABLE TO REFRESH')]")
+// nearestXPath(elem, ".//button[@aria-label='Close']").click()
+
+// 3-4: ALLOW ACCESS TO MICROSOFT 365 ACCOUNT
+// document.evaluate("//span[contains(text(), 'Allow access to Microsoft 365 account')]", document, null, XPathelem.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+// <span id="8gdli5-Title" class="messageTitle-365">Allow access to Microsoft 365 account</span>
+// nearestXPath(elem, ".//button[@aria-label='Close']").click()

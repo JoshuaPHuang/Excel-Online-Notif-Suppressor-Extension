@@ -214,7 +214,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         text: textInput2.value,
                         label: labelInput2.value,
                         xpath: `//*[contains(text(), '${textInput2.value}')]`,
-                        method: `//button[contains(@aria-label, '${labelInput2}')]`,
+                        method: `//button[contains(@aria-label, '${labelInput2.value}')]`,
                     };
                     // Append the row to popup.html
                     appendRow(rowItem);
@@ -224,15 +224,81 @@ document.addEventListener("DOMContentLoaded", function () {
                         if (chrome.runtime.lastError) {
                             console.error("Error saving to local storage:", chrome.runtime.lastError);
                         }
+                        resolve();
+                        // Add a contentScript.js refresh request to the queue
+                        refreshCsMem();
                     });
                     // Clean up
                     showHideElems(addRow2, newRow2);
                     clearInputs();
-                    resolve();
                 });
             })
         })
     });
+
+
+
+    // Checkbox change handler; adds memory updates to the memQueue
+    document.body.addEventListener("change", function(event) {
+        if (!event.target.matches("input[type='checkbox']")) return;
+        return memQueue.add(() => {
+            return new Promise((resolve, reject) => {
+                chrome.storage.local.get(["xlpbMem"], (result) => {
+                    let localMem = result.xlpbMem || {};
+                    let checkboxIdNumStr = event.target.id.replace("checkbox-", "");
+                    try {
+                        localMem[checkboxIdNumStr].state = !localMem[checkboxIdNumStr].state;
+                    } catch (error) {
+                        console.log(`Error trying to access key "${checkboxIdNumStr}" in localMem: ${error}`)
+
+                    }
+                    chrome.storage.local.set({ xlpbMem: localMem }, () => {
+                        if (chrome.runtime.lastError) {
+                            console.error("Error saving to local storage:", chrome.runtime.lastError);
+                        }
+                        // Clean up
+                        resolve();
+                        // Add a contentScript.js refresh request to the queue
+                        refreshCsMem();
+                    });
+                });
+            });
+        });
+    });
+
+
+    // Function to add a refresh signal task to the memQueue; signals to the contentScript on each Excel iframe so it re-reads the current contents of local memory, doesn't care about response
+    function refreshCsMem() {
+        return memQueue.add(() => {
+            return new Promise ((resolve, reject) => {
+                chrome.runtime.sendMessage({ action: "findIframes" }, (response) => {
+                    if (!response || !response.frames || response.frames.length == 0) {
+                        // console.error("No iframes found."); // Just stop; it's fine if there are no Excel iframes open
+                        resolve();
+                    }
+                    // console.log(response)
+                    response.frames.forEach(frame => {
+                        console.log(`Found iframe: Frame ID = ${frame.frameId}, URL = ${frame.url}, customTabId = ${frame.customTabId}`);
+                        chrome.tabs.sendMessage(frame.customTabId, { action: "refreshMemory" }, { frameId: frame.frameId }, (response) => {
+                            if (chrome.runtime.lastError) {
+                                console.log(`Error sending message to frame ${frame.frameId}:`, chrome.runtime.lastError.message);
+                            } else {
+                                console.log(`Response from iframe ${frame.frameId}:`, response);
+                            }
+                        });
+                    });
+                    resolve(); // Just resolve without verifying responses since there are bound to be errors; they will be scheduled and logged anyways
+                });
+            });
+        });
+    }
+
+
+
+
+
+
+
 
     // Function to add a new row before the new-row input row
     function appendRow(rowItem) {
@@ -271,53 +337,28 @@ document.addEventListener("DOMContentLoaded", function () {
     // Function to delete the nearest item with class="row" to an event
     function deleteRow(event) {
         const rowToDel = event.target.closest(".row"); // Closest element with class row
-        if (rowToDel) {
-            let idNumStr = rowToDel.id.replace("row-", "");
-            return memQueue.add(() => {
-                return new Promise((resolve, reject) => {
-                    chrome.storage.local.get(["xlpbMem"], (result) => {
-                        let localMem = result.xlpbMem || {};
-                        // Delete the rowItem from local storage and write back
-                        delete localMem[idNumStr];
-                        chrome.storage.local.set({ xlpbMem: localMem }, () => {
-                            if (chrome.runtime.lastError) {
-                                console.error("Error saving to local storage:", chrome.runtime.lastError);
-                            }
-                        });
-                    });
-                    // Remove the row from .html
-                    rowToDel.remove();
-                    resolve();
-                })
-            })
-        }
-    }
-
-    // Function to send a refresh signal to the contentScript on each Excel iframe so it re-reads the current contents of local memory
-    function refreshCsMem() {
+        if (!rowToDel) return;
+        // Get id
+        let idNumStr = rowToDel.id.replace("row-", "");
+        // Remove the row from .html
+        rowToDel.remove();
         return memQueue.add(() => {
-            return new Promise ((resolve, reject) => {
-                chrome.runtime.sendMessage({ action: "findIframes" }, (response) => {
-                    if (!response || !response.frames || response.frames.length == 0) {
-                        // console.error("No iframes found."); // Just stop; it's fine if there are no Excel iframes open
+            return new Promise((resolve, reject) => {
+                chrome.storage.local.get(["xlpbMem"], (result) => {
+                    let localMem = result.xlpbMem || {};
+                    // Delete the rowItem from local storage and write back
+                    delete localMem[idNumStr];
+                    chrome.storage.local.set({ xlpbMem: localMem }, () => {
+                        if (chrome.runtime.lastError) {
+                            console.error("Error saving to local storage:", chrome.runtime.lastError);
+                        }
                         resolve();
-                    }
-                    // console.log(response)
-                    response.frames.forEach(frame => {
-                        console.log(`Found iframe: Frame ID = ${frame.frameId}, URL = ${frame.url}, customTabId = ${frame.customTabId}`);
-                        chrome.tabs.sendMessage(frame.customTabId, { action: "refreshMemory" }, { frameId: frame.frameId }, (response) => {
-                            if (chrome.runtime.lastError) {
-                                console.log(`Error sending message to frame ${frame.frameId}:`, chrome.runtime.lastError.message);
-                            } else {
-                                console.log(`Response from iframe ${frame.frameId}:`, response);
-                            }
-                            resolve();
-                        });
                     });
                 });
-            });
-        });
+            })
+        })
     }
+
 
 
 
