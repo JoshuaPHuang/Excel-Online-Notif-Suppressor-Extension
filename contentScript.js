@@ -1,27 +1,3 @@
-// // Debouncer function
-// function debounce(func, delay) {
-//     let timer;
-//     return function(...args) {
-//         clearTimeout(timer);
-//         timer = setTimeout(() => func.apply(this, args), delay);
-//     };
-// }
-
-
-// function advDebounce(func, delay) {
-//     let timer;
-//     let isFirstCall = true; // Track whether it's the first call after the timer ran out
-//     return function(...args) {
-//         if (isFirstCall) {
-//             func.apply(this, args); // Execute immediately on the first call
-//             isFirstCall = false;
-//         }
-//         clearTimeout(timer); // Clear any previous timer
-//         timer = setTimeout(() => {
-//             func.apply(this, args); // Execute after the delay
-//         }, delay);
-//     };
-// }
 // Debouncer function that runs the function instantly once if only called once; sets timeout to prevent duplicate calls; calls the function at the very end of the timeout and resets behavior
 function advDebounce(func, delay) {
     let timer;
@@ -41,22 +17,10 @@ function advDebounce(func, delay) {
     };
 }
 
-
-
-
-
-
-
-// Enable throttled notifications
-let last_notif_time = 0;
-function custom_notif(notif_txt)
-{
-    const now_time = Date.now();
-    if (now_time - last_notif_time >= 1000) {
-        chrome.runtime.sendMessage({type: 'custom_notif', text: notif_txt});
-        last_notif_time = now_time;
-    }
-};
+// Function to send notifications (throttled in background.js)
+function createNotif(notifTxt) {
+    chrome.runtime.sendMessage( {type: 'xlpbNotif', text: notifTxt} )    
+}
 
 // Function to look for an xpath in a certain context (document for most cases)
 const searchXPath = (context, xPath) => {
@@ -200,19 +164,6 @@ function initXlObserver() {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 function refreshMutObserver(newMem) {
     if (observer) {
         observer.disconnect();
@@ -228,7 +179,8 @@ function refreshMutObserver(newMem) {
             }
         });
         if (addedNodesFlag) {
-            debouncedSuppressor(newMem);
+            suppressor(newMem);
+            // debouncedSuppressor(newMem);
         }
     })
     observer.observe(document.body, {
@@ -237,107 +189,43 @@ function refreshMutObserver(newMem) {
     });
 }
 
-const debouncedSuppressor = advDebounce(function(arg) { suppressor(arg); }, 100);
+const debouncedSuppressor = advDebounce(function(arg) { suppressor(arg); }, 10); // 10ms
 
 function suppressor(mem) {
-    for (let key in mem) {
-        console.log(`Looking for ${mem[key].name}: ${mem[key].xpath}`);
-        let foundElem = null;
-        if (mem[key].state !== true) {
-            console.error(`Key ${key} .state !== true, please check the filter`);
-            continue;
+    let notifFlag = false;
+    // METHOD 1
+    Object.keys(mem).forEach(key => {
+        if (mem[key].name == "Enable Desktop Notifications") {
+            notifFlag = true;
         }
-        foundElem = searchXPath(document, mem[key].xpath);
-        if (!foundElem) continue;
-        console.log(`Found element with xpath ${mem[key].xpath}, suppresing...`)
-        if (mem[key].method == "REMOVE") { // Remove the element entirely if remove is selected
+    });
+    // METHOD 1
+    Object.values(mem).forEach(item => {
+        // console.log(`Looking for ${mem[key].name}: ${mem[key].xpath}`);
+        let foundElem = null;
+        if (item.state !== true) {
+            console.error(`Key ${item.idNumStr} .state !== true, please check the filter`);
+            return;
+        } else if (item.xpath == "" || item.method == "") {
+            return;
+        }
+        foundElem = searchXPath(document, item.xpath);
+        if (!foundElem) return;
+        console.log(`Found element with xpath ${item.xpath}, suppressing...`)
+        let suppressedFlag = false;
+        if (item.method == "REMOVE") { // Remove the element entirely if remove is selected
             foundElem.remove();
+            suppressedFlag = true;
         } else {
             try {
-                nearestXPath(foundElem, mem[key].method).click(); // Click on the method button to interact w/ the dialog
+                nearestXPath(foundElem, item.method).click(); // Click on the method button to interact w/ the dialog
+                suppressedFlag = true;
             } catch (error) {
-                console.log(`Error trying to click ${mem[key].method}: ${error}`);
+                console.log(`Error trying to click ${item.method}: ${error}`);
             }
         }
-    }
+        if (notifFlag && suppressedFlag) {
+            createNotif(`Suppressed: ${item.name}`);
+        }
+    })
 }
-
-
-// // Function to start the MutationObserver for the excel iframe
-// function start_excel_observer() {
-//     var observer = new MutationObserver(function(mutations) {
-//         mutations.forEach(function(mutation) {
-//             if (mutation.addedNodes.length > 0) { // If child elements were added
-//                 // Define an array of XPaths to check and remove elements
-//                 let rm_xpaths = [
-//                     // "//div[@id='fluent-default-layer-host']",
-//                     "//div[@class='RenamePromptCalloutHeader']",
-//                     "//div[contains(@aria-label, 'Selected date')]",
-//                     "//button[@id='KeyboardShortcutAwarenessCalloutCloseButton']/parent::*/parent::*/parent::*",
-//                     "//div[contains(text(), 'Editing session in progress')]",
-//                     "//div[contains(text(), 'Someone has this workbook locked')]",
-//                     "//div[contains(text(), 'Sorry, your session has expired')]"
-//                 ];
-//                 // Call removeElementByXPath with the array of XPaths
-//                 removeElementByXPath(rm_xpaths);
-//             }
-//         });
-//     });
-//     observer.observe(document.body, {
-//         childList: true, // Only listen to when child elements are added/removed
-//         subtree: true // Listen to all descendants of document.body
-//     });
-// }
-
-
-
-// // Function to check for the element using XPath and remove it if found
-// function removeElementByXPath(xpathArray) {
-//     for (let xpath of xpathArray) {
-//         let elem = searchXPath(document, xpath);
-//         if (!elem) {
-//             continue
-//         }
-//         if (xpath.includes("Editing session in progress"))
-//         {
-//             let actionElem = searchXPath(document, "//button[@aria-label='Yes'][@id='DialogActionButton']");
-//             if (actionElem)
-//             {
-//                 console.log("EXCEL SUPPRESSOR: Editing session in progress Dialogue has been auto-approved...");
-//                 custom_notif("Editing in progress dialogue");
-//                 actionElem.click();
-//                 return true; // Indicate that the element was found and removed
-//             }
-//         }
-//         else if (xpath.includes("Someone has this workbook locked"))
-//         {
-//             let actionElem = searchXPath(document, "//button[@aria-label='No'][@id='DialogSecondaryActionButton']");
-//             if (actionElem)
-//             {
-//                 console.log("EXCEL SUPPRESSOR: Someone has this workbook locked Dialogue has been auto-disapproved...");
-//                 custom_notif("Workbook locked dialogue");
-//                 actionElem.click();
-//                 return true; // Indicate that the element was found and removed
-//             }
-//         }
-//         else if (xpath.includes("Sorry, your session has expired"))
-//         {
-//             let actionElem = searchXPath(document, "//button[@aria-label='Refresh'][@id='DialogActionButton']");
-//             if (actionElem)
-//             {
-//                 console.log("EXCEL SUPPRESSOR: Someone has this workbook locked Dialogue has been auto-disapproved...");
-//                 custom_notif("Workbook locked dialogue");
-//                 actionElem.click();
-//                 return true; // Indicate that the element was found and removed
-//             }
-//         }
-//         else // 
-//         {
-//             elem.remove();
-//             console.log("EXCEL SUPPRESSOR: Element removed for XPath: " + xpath);
-//             custom_notif(xpath);
-//             return true; // Indicate that the element was found and removed
-//         }
-//     }
-//     return false; // Indicate that none of the XPaths matched any element
-// }

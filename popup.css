@@ -85,7 +85,7 @@ h2 {
     white-space: normal;
     /* word-break: break-all; */
     z-index: 100;
-    left: 0;
+    right: 0;
     /* margin-top: 0.3rem; */
     /*
     left: -50%;

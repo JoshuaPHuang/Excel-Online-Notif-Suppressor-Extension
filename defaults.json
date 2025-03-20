@@ -80,12 +80,12 @@
     "2-3": {
         "idNumStr": "2-3",
         "section": "2",
-        "name": "Frozen Rows Won't Scroll",
+        "name": "Frozen Rows/Columns Won't Scroll",
         "state": false,
         "appended": false,
-        "text": "'Frozen rows won't scroll'<br>'The visible area of your grid contains only frozen rows, which will not scroll. To scroll, unfreeze the rows, change the size of the Excel window, or zoom out.'<br>This pop-up appears when trying to scroll on a screen with no unfrozen cells visible.",
+        "text": "'Frozen rows/columns won't scroll'<br>'The visible area of your grid contains only frozen rows/columns, which will not scroll. To scroll, unfreeze the rows/columns, change the size of the Excel window, or zoom out.'<br>This pop-up appears when trying to scroll on a screen with no unfrozen cells visible.",
         "label": "Check to auto-select 'OK'.",
-        "xpath": "//div[contains(text(), 'Frozen rows won')]",
+        "xpath": "//div[contains(text(), 'Frozen ')][contains(text(), 't scroll')]",
         "method": ".//button[@aria-label='OK']"
     },
     "2-4": {

@@ -69,29 +69,37 @@ document.addEventListener("DOMContentLoaded", function () {
     // KEY
     // 2: Auto-Approve Pop-Ups section
     // 3: Auto-Close Pop-Ups section
-    const container1 = document.getElementById('blocked-pop-ups')
-    const container2 = document.getElementById('auto-approved-pop-ups')
-    const container3 = document.getElementById('auto-closed-pop-ups')
-    const container4 = document.getElementById('settings')
-    const containerD = {"1": container1, "2": container2, "3": container3, "4": container4}
 
-
-    const newRow2 = document.getElementById('new-row-2')
-    const addRow2 = document.getElementById('add-row-2')
-    const addButton2 = document.getElementById('add-button-2')
-    const saveButton2 = document.getElementById('new-save-button-2')
-    const cancelButton2 = document.getElementById('cancel-new-row-2')
-    const nameInput2 = document.getElementById('new-name-2')
-    const textInput2 = document.getElementById('new-text-2')
-    const labelInput2 = document.getElementById('new-label-2')
+    const newRow2 = document.getElementById('new-row-2');
+    const addRow2 = document.getElementById('add-row-2');
+    const addButton2 = document.getElementById('add-button-2');
+    const saveButton2 = document.getElementById('new-save-button-2');
+    const cancelButton2 = document.getElementById('cancel-new-row-2');
+    const nameInput2 = document.getElementById('new-name-2');
+    const textInput2 = document.getElementById('new-text-2');
+    const labelInput2 = document.getElementById('new-label-2');
     const inputsArr2 = [nameInput2, textInput2, labelInput2];
 
-    const newRow3 = document.getElementById('new-row-3')
-    const addRow3 = document.getElementById('add-row-3')
-    const addButton3 = document.getElementById('add-button-3')
-    const saveButton3 = document.getElementById('new-save-button-3')
+    
+    const newRow3 = document.getElementById('new-row-3');
+    const addRow3 = document.getElementById('add-row-3');
+    const addButton3 = document.getElementById('add-button-3');
+    const saveButton3 = document.getElementById('new-save-button-3');
+    const cancelButton3 = document.getElementById('cancel-new-row-3');
+    const nameInput3 = document.getElementById('new-name-3');
+    const textInput3 = document.getElementById('new-text-3');
+    const labelInput3 = document.getElementById('new-label-3');
+    const inputsArr3 = [nameInput3, textInput3, labelInput3];
 
-    const beforeElemD = {"1": null, "2": newRow2, "3": newRow3, "4": null}
+
+    const settingsBeforeElem = document.getElementById('row-4-2');
+    
+    const container1 = document.getElementById('blocked-pop-ups');
+    const container2 = document.getElementById('auto-approved-pop-ups');
+    const container3 = document.getElementById('auto-closed-pop-ups');
+    const container4 = document.getElementById('settings');
+    const containerD = {"1": container1, "2": container2, "3": container3, "4": container4};
+    const beforeElemD = {"1": null, "2": newRow2, "3": newRow3, "4": settingsBeforeElem};
 
     // Create a queue class to hold read and write functions to local storage
     const memQueue = new PromiseQueue();
@@ -173,14 +181,39 @@ document.addEventListener("DOMContentLoaded", function () {
         showHideElems(addRow3, newRow3);
         inputsArr.forEach(resetErrorClass);
     });
+    addButton3.addEventListener("click", function() { // Show new approve row input, hide "Add New Row", reset block input
+        refreshCsMem();
+        showHideElems(newRow3, addRow3);
+        showHideElems(addRow2, newRow2);
+        inputsArr.forEach(resetErrorClass);
+    });
     cancelButton2.addEventListener("click", function() { // Cancel and hide new approve row input, show "Add New Row"
         showHideElems(addRow2, newRow2);
         clearInputs();
     });
-    saveButton2.addEventListener("click", function() {
+    cancelButton3.addEventListener("click", function() { // Cancel and hide new approve row input, show "Add New Row"
+        showHideElems(addRow3, newRow3);
+        clearInputs();
+    });
+    // Event listeners for Saving new items
+    saveButton2.addEventListener("click", () => saveItem("2", inputsArr2, nameInput2, textInput2, labelInput2, addRow2, newRow2)); // Save for section 2
+    saveButton3.addEventListener("click", () => saveItem("3", inputsArr3, nameInput3, textInput3, labelInput3, addRow3, newRow3)); // Save for section 3
+    inputsArr2.forEach(inputElem => inputElem.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            saveItem("2", inputsArr2, nameInput2, textInput2, labelInput2, addRow2, newRow2);
+        }
+    }));
+    inputsArr3.forEach(inputElem => inputElem.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            saveItem("3", inputsArr3, nameInput3, textInput3, labelInput3, addRow3, newRow3);
+        }
+    }));
+
+    // Function to call to perform all of the save actions for adding a row to a section
+    function saveItem(sectionNumStr, inputsArr_, nameInput_, textInput_, labelInput_, addRow_, newRow_) {
         // Check first to see if any are empty
         let hasEmpty = false;
-        inputsArr2.forEach(elem => {
+        inputsArr_.forEach(elem => {
             if (elem.value == "") { // Set classes to error if empty
                 setErrorClass(elem);
                 hasEmpty = true;
@@ -193,7 +226,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 chrome.storage.local.get(["xlpbMem"], (result) => {
                     let newIdInd = 101;
                     let localMem = result.xlpbMem || {};
-                    appendedKeys = new Set([...Object.keys(localMem).filter(key => (localMem[key].appended === true && localMem[key].section == "2"))]); // Get set of keys that are appended and are in the correct section
+                    appendedKeys = new Set([...Object.keys(localMem).filter(key => (localMem[key].appended === true && localMem[key].section == sectionNumStr))]); // Get set of keys that are appended and are in the correct section
                     let takenIndSet = new Set();
                     appendedKeys.forEach(key => { // Find all currently taken indices
                         let idNumParts = key.split("-");
@@ -206,15 +239,15 @@ document.addEventListener("DOMContentLoaded", function () {
                     // console.log(`newIdInd:${String(newIdInd)}`)
                     // Create the rowItem to append and add to local storage
                     rowItem = {
-                        idNumStr: `2-${newIdInd}`,
-                        section: "2",
-                        name: nameInput2.value,
+                        idNumStr: `${sectionNumStr}-${newIdInd}`,
+                        section: sectionNumStr,
+                        name: nameInput_.value,
                         state: true,
                         appended: true,
-                        text: textInput2.value,
-                        label: labelInput2.value,
-                        xpath: `//*[contains(text(), '${textInput2.value}')]`,
-                        method: `//button[contains(@aria-label, '${labelInput2.value}')]`,
+                        text: textInput_.value,
+                        label: labelInput_.value,
+                        xpath: `//*[contains(text(), '${textInput_.value}')]`,
+                        method: `//button[contains(@aria-label, '${labelInput_.value}')]`,
                     };
                     // Append the row to popup.html
                     appendRow(rowItem);
@@ -229,13 +262,23 @@ document.addEventListener("DOMContentLoaded", function () {
                         refreshCsMem();
                     });
                     // Clean up
-                    showHideElems(addRow2, newRow2);
+                    showHideElems(addRow_, newRow_);
                     clearInputs();
                 });
             })
         })
-    });
+    }
 
+
+    // Function to clear the contents of all name/text/label inputs
+    function clearInputs() {
+        nameInput2.value = "";
+        textInput2.value = "";
+        labelInput2.value = "";
+        nameInput3.value = "";
+        textInput3.value = "";
+        labelInput3.value = "";
+    }
 
 
     // Checkbox change handler; adds memory updates to the memQueue
@@ -247,10 +290,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     let localMem = result.xlpbMem || {};
                     let checkboxIdNumStr = event.target.id.replace("checkbox-", "");
                     try {
-                        localMem[checkboxIdNumStr].state = !localMem[checkboxIdNumStr].state;
+                        localMem[checkboxIdNumStr].state = event.target.checked;
                     } catch (error) {
                         console.log(`Error trying to access key "${checkboxIdNumStr}" in localMem: ${error}`)
-
                     }
                     chrome.storage.local.set({ xlpbMem: localMem }, () => {
                         if (chrome.runtime.lastError) {
@@ -368,15 +410,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-
-    // Function to clear the contents of all name/text/label inputs
-    function clearInputs() {
-        nameInput2.value = "";
-        textInput2.value = "";
-        labelInput2.value = "";
-        // nameInput3.value = "";
-        // textInput3.value = "";
-        // labelInput4.value = "";
-    }
 
 });
