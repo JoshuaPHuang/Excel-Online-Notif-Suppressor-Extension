@@ -87,7 +87,7 @@ let readQueue = new PromiseQueue();
 
 
 // Run the functions to start the observer
-const iframePattern = new RegExp('https://.*\\.officeapps\\.live\\.com');
+const iframePattern = new RegExp('^https://(usc-excel\\.officeapps\\.live\\.com|excel\\.officeapps\\.live\\.com|officeonline\\.sfcollab\\.org)/')
 // if (document.location.origin.match('https://usc-excel.officeapps.live.com'))
 if (document.location.origin.match(iframePattern))
 {

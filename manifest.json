@@ -1,9 +1,9 @@
 {
   "manifest_version": 3,
   "name": "Excel Online Pop-Up Blocker",
-  "version": "2.1.0",
-  "description": "Suppresses Excel Online pop-ups which may interrupt work, interfere with keyboard shortcuts, or generally cause annoyance. Pop-ups available for blocking include: the Calendar Pop-Up, 'We have autosaved your file. Ready to name it?', 'Need more working space? Looks like your display is not optimised.', 'Your browser reserves some shortcuts. Find the list of alternatives here.', the Ctrl Paste Menu, 'Someone has this workbook locked', 'Excel shortcuts enabled', 'Frozen rows won't scroll', 'Frozen columns won't scroll', 'Editing session in progress', 'Sorry, your session has expired.', 'Your session is about to expire', 'Can't Edit Workbook', 'Trust workbook links?', 'UNABLE TO REFRESH. We couldn't get updated values from a linked workbook.', and 'Allow access to Microsoft 365 account'.\nAlso allows for the creation of custom automatic pop-up interactions.\nAll changes to Excel Online behavior, experience, or security are entirely optional.\nCurrently only works on Excel Online iframes with origins matching https://usc-excel.officeapps.live.com/",
-  "version_name": "2.1.0 (First Functional Release 20250319)",
+  "version": "2.1.1",
+  "description": "Suppresses Excel Online pop-ups which may interrupt work, interfere with keyboard shortcuts, or generally cause annoyance. Pop-ups available for blocking include: the Calendar Pop-Up, 'We have autosaved your file. Ready to name it?', 'Need more working space? Looks like your display is not optimised.', 'Your browser reserves some shortcuts. Find the list of alternatives here.', the Ctrl Paste Menu, 'Someone has this workbook locked', 'Excel shortcuts enabled', 'Frozen rows won't scroll', 'Frozen columns won't scroll', 'Editing session in progress', 'Sorry, your session has expired.', 'Your session is about to expire', 'Can't Edit Workbook', 'Trust workbook links?', 'UNABLE TO REFRESH. We couldn't get updated values from a linked workbook.', and 'Allow access to Microsoft 365 account'.\nAlso allows for the creation of custom automatic pop-up interactions.\nAll changes to Excel Online behavior, experience, or security are entirely optional.\nCurrently only works on Excel Online iframes with origins matching 'https://usc-excel.officeapps.live.com/*', 'https://excel.officeapps.live.com/*', or 'https://officeonline.sfcollab.org/*'",
+  "version_name": "2.1.1 (First Functional Release 20250319)",
   "author": "Joshua Huang",
   "permissions": [
     "notifications",
@@ -20,7 +20,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://usc-excel.officeapps.live.com/*"],
+      "matches": ["https://usc-excel.officeapps.live.com/*", "https://excel.officeapps.live.com/*", "https://officeonline.sfcollab.org/*"],
       "all_frames": true,
       "js": ["contentScript.js"]
     }
@@ -32,7 +32,7 @@
   "web_accessible_resources": [
     {
       "resources": ["logs.html", "acknowledgments.html", "defaults.json"],
-      "matches": ["<all_urls>"]
+      "matches": ["https://usc-excel.officeapps.live.com/*", "https://excel.officeapps.live.com/*", "https://officeonline.sfcollab.org/*"]
     }
   ]
 }
